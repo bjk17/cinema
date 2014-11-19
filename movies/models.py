@@ -10,5 +10,5 @@ class Movie(models.Model):
 
 class Showtime(models.Model):
     movie = models.ForeignKey(Movie)
-    cinema = models.CharField(max_length=20)
+    cinema = models.CharField(max_length=30)
     time = models.CharField(max_length=20)
