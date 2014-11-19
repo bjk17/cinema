@@ -56,6 +56,15 @@ ROOT_URLCONF = 'Vefforritun.urls'
 WSGI_APPLICATION = 'Vefforritun.wsgi.application'
 
 
+# Cache
+# https://docs.djangoproject.com/en/1.7/topics/cache/
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': 'localhost:8000',
+    }
+}
+
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
