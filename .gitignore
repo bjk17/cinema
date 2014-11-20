@@ -1,8 +1,9 @@
 # Annoying Mac OSX thing
-.DS_Store
+*.DS_Store
 
 # gagnagrunnur.db
-.db
+gagnagrunnur.db
+*/migrations/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
