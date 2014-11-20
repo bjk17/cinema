@@ -55,6 +55,9 @@ ROOT_URLCONF = 'Vefforritun.urls'
 
 WSGI_APPLICATION = 'Vefforritun.wsgi.application'
 
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
+)
 
 # Cache
 # https://docs.djangoproject.com/en/1.7/topics/cache/

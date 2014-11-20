@@ -5,6 +5,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, render_to_response
 
 from movies.models import Movie,Showtime,Timestamp
+from django.template import Context, loader
 
 import urllib2, json, sys, time
 
@@ -13,9 +14,13 @@ import urllib2, json, sys, time
 def index(request):
     # return render_to_response('index.html', {})
     requestMovies(request)
-    getMoviesFromDB(request)
-    showMovies()
-    return HttpResponse("<h1>Hallo heimur!</h1> <p>Thetta er prufusidan okkar.</p>")
+    # getMoviesFromDB(request)
+    j = showMovies()
+    t = loader.get_template('index.html')
+    c = Context({'movieTitle': j})
+
+    return HttpResponse(t.render(c))
+    # return HttpResponse("<h1>Hallo heimur!</h1> <p>Thetta er prufusidan okkar.</p>")
 
 def requestMovies(request):   
     # Get time last request was made and current time
@@ -89,12 +94,19 @@ def getMoviesFromDB(request):
 
 def showMovies():
     johnWick = Movie.objects.filter(title='John Wick').values('title', 'restricted', 'released')
-    restrictedTwelve = Movie.objects.filter(restricted=12).values('title')
-    restrictedSixteen = Movie.objects.filter(restricted=16).values('title')
+    restrictedTwelve = Movie.objects.filter(restricted=12).values('title','restricted')
+    restrictedSixteen = Movie.objects.filter(restricted=16).values('title','restricted')
 
-    print johnWick
+    return johnWick[0]['title']
+
+    '''t = loader.get_template('index.html')
+    c = Context({'movieTitle': johnWick[0]['title']})
+
+    return HttpResponse(t.render(c))
+
+    print johnWick[0]['title'], johnWick[0]['restricted']
     for i in range(0,len(restrictedTwelve)):
-        print restrictedTwelve[i]['title']
+        print restrictedTwelve[i]['title'], '---Bönnuð innan: ', restrictedTwelve[i]['restricted']
     for i in range(0, len(restrictedSixteen)):
-        print restrictedSixteen[i]['title']
-    # movieList = getMoviesFromDB()
+        print restrictedSixteen[i]['title'], '---Bönnuð innan: ', restrictedSixteen[i]['restricted']
+    # movieList = getMoviesFromDB()'''
