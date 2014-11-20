@@ -15,9 +15,10 @@ def index(request):
     # return render_to_response('index.html', {})
     requestMovies(request)
     # getMoviesFromDB(request)
-    j = showMovies()
+    restrictedSixteen = showMovies()
+    # print restrictedSixteen
     t = loader.get_template('index.html')
-    c = Context({'movieTitle': j})
+    c = Context({'restrictedSixteen': restrictedSixteen})
 
     return HttpResponse(t.render(c))
     # return HttpResponse("<h1>Hallo heimur!</h1> <p>Thetta er prufusidan okkar.</p>")
@@ -93,18 +94,12 @@ def getMoviesFromDB(request):
     return Movie.objects.all().values()
 
 def showMovies():
-    johnWick = Movie.objects.filter(title='John Wick').values('title', 'restricted', 'released')
-    restrictedTwelve = Movie.objects.filter(restricted=12).values('title','restricted')
-    restrictedSixteen = Movie.objects.filter(restricted=16).values('title','restricted')
+    johnWick = Movie.objects.filter(title='John Wick').values('title', 'restricted', 'released', 'image')
+    restrictedTwelve = Movie.objects.filter(restricted=12).values('title','released','restricted', 'imdb', 'image')
+    restrictedSixteen = Movie.objects.filter(restricted=16).values('title','released','restricted', 'imdb', 'image')
+    return restrictedSixteen
 
-    return johnWick[0]['title']
-
-    '''t = loader.get_template('index.html')
-    c = Context({'movieTitle': johnWick[0]['title']})
-
-    return HttpResponse(t.render(c))
-
-    print johnWick[0]['title'], johnWick[0]['restricted']
+    '''print johnWick[0]['title'], johnWick[0]['restricted']
     for i in range(0,len(restrictedTwelve)):
         print restrictedTwelve[i]['title'], '---Bönnuð innan: ', restrictedTwelve[i]['restricted']
     for i in range(0, len(restrictedSixteen)):

@@ -44,7 +44,7 @@
 				<label for="SambioinKeflavik">Sambíóin Keflavík</label>
 			</li>
 			<li>
-				<input type="checkbox" name="theater" id="SambioinKringlunni" value="SambioinKringlunni">
+				<input type="checkbox" name="theater" id="SambioinKringlunni" value="SambioinKringlunni"> 
 				<label for="SambioinKringlunni">Sambíóin Kringlunni</label>
 			</li>
 			<li>
@@ -60,10 +60,20 @@
 	</div>
 	<main>
 		<div class="toSee">
-			<!--einhver foreach lykkja sem ýtrar í gegnum allar myndir, býr til eitt card fyrir hvera mynd-->
+			<!--einhver foreach lykkja sem ítrar í gegnum allar myndir, býr til eitt card fyrir hvera mynd-->
 		</div>
 		<div class="movies">
-			<p> {{ movieTitle }} </p>
+			<ul>
+				{% for movie in restrictedSixteen %}
+				<li>
+					<p> {{ movie.title }} </p>
+					<p> {{ movie.released }} </p>
+					<p> {{ movie.restricted }} </p>
+					<p> {{ movie.imdb }} </p>
+					<img src="{{ movie.image }}" />
+				</li>
+				{% endfor %}
+			</ul>
 		</div>
 		<div class="seen"></div>
 	</main>
