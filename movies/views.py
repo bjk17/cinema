@@ -10,19 +10,16 @@ from django.template import Context, loader
 import urllib2, json, sys, time
 
 
-# Create your views here.
 def index(request):
-    # return render_to_response('index.html', {})
+    #Show theaters and movies on site
     requestMovies(request)
-    # getMoviesFromDB(request)
-    
-    restrictedSixteen = showMovies()
     theaters = getTheaters()
+    allMovies = getMoviesFromDB(request)
+
     t = loader.get_template('index.html')
-    c = Context({'theaterList': theaters, 'restrictedSixteen': restrictedSixteen})
+    c = Context({'theaterList': theaters, 'allMovies': allMovies})
 
     return HttpResponse(t.render(c))
-    # return HttpResponse("<h1>Hallo heimur!</h1> <p>Thetta er prufusidan okkar.</p>")
 
 def getTheaters():
     theaterList = {
@@ -107,19 +104,5 @@ def newTimestamp():
 #If it is
 #if not we remove the film 
 
-
 def getMoviesFromDB(request):
     return Movie.objects.all().values()
-
-def showMovies():
-    johnWick = Movie.objects.filter(title='John Wick').values('title', 'restricted', 'released', 'image')
-    restrictedTwelve = Movie.objects.filter(restricted=12).values('title','released','restricted', 'imdb', 'image')
-    restrictedSixteen = Movie.objects.filter(restricted=16).values('title','released','restricted', 'imdb', 'image')
-    return restrictedSixteen
-
-    '''print johnWick[0]['title'], johnWick[0]['restricted']
-    for i in range(0,len(restrictedTwelve)):
-        print restrictedTwelve[i]['title'], '---Bönnuð innan: ', restrictedTwelve[i]['restricted']
-    for i in range(0, len(restrictedSixteen)):
-        print restrictedSixteen[i]['title'], '---Bönnuð innan: ', restrictedSixteen[i]['restricted']
-    # movieList = getMoviesFromDB()'''
