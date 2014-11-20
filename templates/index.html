@@ -9,53 +9,16 @@
 		<h1>Bíósýningar</h1>
 	<header/>
 	<div id="theaters">
+
 		<h2 id="chooseTheater">Velja Kvikmyndahús</h2>
 		<ul id="theaterList">
+			{% for key, value in theaterList.items %}
 			<li>
-				<input type="checkbox" name="theater" id="BioParadis" value="BioParadis">
-				<label for="BioParadis">Bíó Paradís</label>
+				<input type="checkbox" name="theater" id="{{ key }}" value="{{ key }}">
+				<label for="{{ key }}">{{ value }}</label>
 			</li>
-			<li>
-				<input type="checkbox" name="theater" id="BorgarbioAkureyri" value="BorgarbioAkureyri">
-				<label for="BorgarbioAkureyri">Borgarbíó Akureyri</label>
-			</li>
-			<li>
-				<input type="checkbox" name="theater" id="Haskolabio" value="Haskolabio">
-				<label for="Laugarásbíó">Háskólabíó</label>
-			</li>
-			<li>
-				<input type="checkbox" name="theater" id="Laugarasbio" value="Laugarasbio">
-				<label for="Laugarasbio">Laugarásbíó</label>
-			</li>
-			<li>
-				<input type="checkbox" name="theater" id="SambioinAkureyri" value="SambioinAkureyri">
-				<label for="SambioinAkureyri">Sambíóin Akureyri</label>
-			</li>
-			<li>
-				<input type="checkbox" name="theater" id="SambioinAlfabakka" value="SambioinAlfabakka">
-				<label for="SambioinAlfabakka">Sambíóin Álfabakka</label>
-			</li>
-			<li>
-				<input type="checkbox" name="theater" id="SambioinEgilsholl" value="SambioinEgilsholl">
-				<label for="SambioinEgilsholl">Sambíóin Egilshöll</label>
-			</li>
-			<li>
-				<input type="checkbox" name="theater" id="SambioinKeflavik" value="SambioinKeflavik">
-				<label for="SambioinKeflavik">Sambíóin Keflavík</label>
-			</li>
-			<li>
-				<input type="checkbox" name="theater" id="SambioinKringlunni" value="SambioinKringlunni"> 
-				<label for="SambioinKringlunni">Sambíóin Kringlunni</label>
-			</li>
-			<li>
-				<input type="checkbox" name="theater" id="SambioinSelfossi" value="SambioinSelfossi">
-				<label for="SambioinSelfossi">Sambíóin Selfossi</label>
-			</li>
-			<li>
-				<input type="checkbox" name="theater" id="Smarabio" value="Smarabio">
-				<label for="Smarabio">Smárabíó</label>
-			</li>
-			
+
+    		{% endfor %}			
 		</ul>
 	</div>
 	<main>

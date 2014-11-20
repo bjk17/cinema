@@ -15,13 +15,31 @@ def index(request):
     # return render_to_response('index.html', {})
     requestMovies(request)
     # getMoviesFromDB(request)
+    
     restrictedSixteen = showMovies()
-    # print restrictedSixteen
+    theaters = getTheaters()
     t = loader.get_template('index.html')
-    c = Context({'restrictedSixteen': restrictedSixteen})
+    c = Context({'theaterList': theaters, 'restrictedSixteen': restrictedSixteen})
 
     return HttpResponse(t.render(c))
     # return HttpResponse("<h1>Hallo heimur!</h1> <p>Thetta er prufusidan okkar.</p>")
+
+def getTheaters():
+    theaterList = {
+        'bioParadis' : 'Bíó Paradís',
+        'borgarbioAkureyri' : 'Borgarbíó Akureyri',
+        'haskolabio' : 'Háskólabíó',
+        'laugarasbio' : 'Laugarásbíó',
+        'sambioinAkureyri' : 'Sambíóin Akureyri',
+        'sambioinAlfabakka' : 'Sambíóin Álfabakka',
+        'sambioinEgilshöll' : 'Sambíóin Egilshöll',
+        'sambioinKeflavik' : 'Sambíóin Keflavík',
+        'sambioinKringlunni' : 'Sambíóin Kringlunni',
+        'sambioinSelfossi' : 'Sambíóin Selfossi',
+        'smarabio' : 'Smárabíó', 
+    }
+
+    return theaterList
 
 def requestMovies(request):   
     # Get time last request was made and current time
