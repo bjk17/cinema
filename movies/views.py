@@ -2,48 +2,62 @@
 # -*- coding: utf-8 -*-
 
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 
-from movies.models import Movie,Showtime
+from movies.models import Movie,Showtime,Timestamp
 
-import urllib2, json, sys
+import urllib2, json, sys, time
 
 
 # Create your views here.
 def index(request):
+    # return render_to_response('index.html', {})
+    requestMovies(request)
+    showMovies()
     return HttpResponse("<h1>Hallo heimur!</h1> <p>Thetta er prufusidan okkar.</p>")
 
-def requestMovies(request):
+def requestMovies(request):     
+    # theater = data['results'][4]['showtimes'][0]['theater']
 
+    # Get time last request was made and current time
+    lastRequest = Timestamp.objects.values('timeFetched')
+    currentTime = time.time()
+    lastTime = lastRequest[0]['timeFetched']
+    #print currentTime - lastTime
+    
+    # If there were less than 30 seconds since
+    # the last request we wont make another request
+    # Else we will
+    if((currentTime-lastTime)>30):
+        updateDatabase(request)
+        print "Ég sótti gögn"  
+    else:
+        print "Nýbúið að sækja gögn"  
+
+    return HttpResponse("<h1>Hallo heimur!</h1>")
+
+
+def updateDatabase(request):
+    # APIs request
     url = 'http://apis.is/cinema'
     json_obj = urllib2.urlopen(url)
     data = json.load(json_obj)
-        
-    theater = data['results'][4]['showtimes'][0]['theater']
+   
+    # Delete old movie-entries from db
+    Showtime.objects.all().delete()
+    Movie.objects.all().delete()
 
-    saveToDatabase(data['results'])    
+    # Insert newly fetched movies into db
+    for movie in data['results']:
+        if (movie['restricted']!=u"Öllum leyfð"):
+            indexOfYear = movie['restricted'].find(u"ára")
+            restrictedAge = int(movie['restricted'][0:indexOfYear])
+        else:
+            restrictedAge = 0
 
-    '''for movie in data['results']:
-        print movie['title']
-        print movie['released']
-        print movie['restricted']
-        print movie['imdb']
-        print movie['image']
-        for cinema in movie['showtimes']:
-            print cinema['theater']
-            for time in cinema['schedule']:
-                print time'''
-
-
-    return HttpResponse("<h1>Hallo heimur!</h1> <p> %s </p>" % theater)
-
-def saveToDatabase(data):
-    for movie in data:
-        #print int(unicode(movie['released']))
-        indexOfYear = movie['released'].find(u"ára")
         m = Movie(title=movie['title'],
                     released=int(movie['released']), 
-                    restricted=int(movie['released'][0:indexOfYear]), 
+                    restricted=restrictedAge, 
                     imdb=movie['imdb'], 
                     image=movie['image'])
         m.save()
@@ -51,14 +65,29 @@ def saveToDatabase(data):
             for time in cinema['schedule']:
                 s = Showtime(movie=m, cinema=cinema['theater'], time=time)
                 s.save()
+    '''newTimestamp()
 
- 
-'''
-given a URL, try finding that page in the cache
-if the page is in the cache:
-    return the cached page
-else:
-    generate the page
-    save the generated page in the cache (for next time)
-    return the generated page
-'''
+def newTimestamp():
+    # Delete old timestamp from db
+    Timestamp.objects.all().delete()
+
+    # Get current time
+    ts = time.time()
+
+    # Save current time in db
+    t = Timestamp(timeFetched=ts)
+    t.save()'''
+
+#We need to "update" the database, check if movie is in newly fetched films
+#If it is
+#if not we remove the film 
+
+
+def getMoviesFromDB(request):
+    # print Movie.objects.all().values()
+    return Movie.objects.all().values()
+
+def showMovies():
+    print Movie.objects.filter(title='John Wick').values()
+    # movieList = getMoviesFromDB()
+    # lastRequest = Timestamp.objects.values('timeFetched')

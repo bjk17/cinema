@@ -10,5 +10,8 @@ class Movie(models.Model):
 
 class Showtime(models.Model):
     movie = models.ForeignKey(Movie)
-    cinema = models.CharField(max_length=30)
+    cinema = models.CharField(max_length=50)
     time = models.CharField(max_length=20)
+
+class Timestamp(models.Model):
+	timeFetched = models.FloatField()

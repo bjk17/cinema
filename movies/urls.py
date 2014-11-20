@@ -9,5 +9,5 @@ urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
                        
     #prufa fyrir curl
-    url(r'^request/', views.requestMovies, name='req'),
+    # url(r'^$', views.requestMovies, name='req'),
 )
