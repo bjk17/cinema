@@ -8,10 +8,16 @@ class Movie(models.Model):
     imdb = models.CharField(max_length=20)
     image = models.URLField(max_length=30)
 
+    def __unicode__(self):
+    	return u'%s (%s)' % (self.title, self.released)
+
 class Showtime(models.Model):
     movie = models.ForeignKey(Movie)
     cinema = models.CharField(max_length=50)
     time = models.CharField(max_length=20)
+
+    def __unicode__(self):
+    	return u'%s %s' % (self.cinema, self.time)
 
 class Timestamp(models.Model):
     timeFetched = models.FloatField()
