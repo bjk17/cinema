@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 
 from movies.models import Movie,Showtime,Timestamp
 
@@ -11,15 +11,13 @@ import urllib2, json, sys, time
 
 # Create your views here.
 def index(request):
+    # return render_to_response('index.html', {})
+    requestMovies(request)
+    showMovies()
     return HttpResponse("<h1>Hallo heimur!</h1> <p>Thetta er prufusidan okkar.</p>")
 
-def requestMovies(request):
-
-    url = 'http://apis.is/cinema'
-    json_obj = urllib2.urlopen(url)
-    data = json.load(json_obj)
-        
-    theater = data['results'][4]['showtimes'][0]['theater']
+def requestMovies(request):     
+    # theater = data['results'][4]['showtimes'][0]['theater']
 
     # Get time last request was made and current time
     lastRequest = Timestamp.objects.values('timeFetched')
@@ -27,28 +25,39 @@ def requestMovies(request):
     lastTime = lastRequest[0]['timeFetched']
     #print currentTime - lastTime
     
-    # If there were less than x mins since
-    # last request we wont make another request
+    # If there were less than 30 seconds since
+    # the last request we wont make another request
     # Else we will
     if((currentTime-lastTime)>30):
-        updateDatabase(data['results'])
+        updateDatabase(request)
         print "Ég sótti gögn"  
     else:
         print "Nýbúið að sækja gögn"  
 
-    return HttpResponse("<h1>Hallo heimur!</h1> <p> %s </p>" % theater)
+    return HttpResponse("<h1>Hallo heimur!</h1>")
 
-def updateDatabase(data):
+
+def updateDatabase(request):
+    # APIs request
+    url = 'http://apis.is/cinema'
+    json_obj = urllib2.urlopen(url)
+    data = json.load(json_obj)
+   
     # Delete old movie-entries from db
     Showtime.objects.all().delete()
     Movie.objects.all().delete()
 
     # Insert newly fetched movies into db
-    for movie in data:
-        indexOfYear = movie['released'].find(u"ára")
+    for movie in data['results']:
+        if (movie['restricted']!=u"Öllum leyfð"):
+            indexOfYear = movie['restricted'].find(u"ára")
+            restrictedAge = int(movie['restricted'][0:indexOfYear])
+        else:
+            restrictedAge = 0
+
         m = Movie(title=movie['title'],
                     released=int(movie['released']), 
-                    restricted=int(movie['released'][0:indexOfYear]), 
+                    restricted=restrictedAge, 
                     imdb=movie['imdb'], 
                     image=movie['image'])
         m.save()
@@ -56,8 +65,7 @@ def updateDatabase(data):
             for time in cinema['schedule']:
                 s = Showtime(movie=m, cinema=cinema['theater'], time=time)
                 s.save()
-    
-    newTimestamp()
+    '''newTimestamp()
 
 def newTimestamp():
     # Delete old timestamp from db
@@ -68,30 +76,18 @@ def newTimestamp():
 
     # Save current time in db
     t = Timestamp(timeFetched=ts)
-    t.save()
+    t.save()'''
+
+#We need to "update" the database, check if movie is in newly fetched films
+#If it is
+#if not we remove the film 
 
 
-        #We need to "update" the database, check if movie is in newly fetched films
-        #If it is
-        #if not we remove the film 
+def getMoviesFromDB(request):
+    # print Movie.objects.all().values()
+    return Movie.objects.all().values()
 
-    '''for movie in data['results']:
-        print movie['title']
-        print movie['released']
-        print movie['restricted']
-        print movie['imdb']
-        print movie['image']
-        for cinema in movie['showtimes']:
-            print cinema['theater']
-            for time in cinema['schedule']:
-                print time'''
- 
-'''
-given a URL, try finding that page in the cache
-if the page is in the cache:
-    return the cached page
-else:
-    generate the page
-    save the generated page in the cache (for next time)
-    return the generated page
-'''
+def showMovies():
+    print Movie.objects.filter(title='John Wick').values()
+    # movieList = getMoviesFromDB()
+    # lastRequest = Timestamp.objects.values('timeFetched')
