@@ -26,17 +26,20 @@
 			<!--einhver foreach lykkja sem ítrar í gegnum allar myndir, býr til eitt card fyrir hvera mynd-->
 		</div>
 		<div class="movies">
-			<ul>
 				{% for movie in allMovies %}
-				<li>
+				<section class="movie">
 					<p> {{ movie.title }} </p>
 					<p> {{ movie.released }} </p>
 					<p> {{ movie.restricted }} </p>
 					<p> {{ movie.imdb }} </p>
 					<img src="{{ movie.image }}" />
-				</li>
+					<!--
+					<ul id="theaters">
+						
+					</ul>
+					-->
+				</section>
 				{% endfor %}
-			</ul>
 		</div>
 		<div class="seen"></div>
 	</main>
