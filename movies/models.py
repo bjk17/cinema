@@ -14,4 +14,4 @@ class Showtime(models.Model):
     time = models.CharField(max_length=20)
 
 class Timestamp(models.Model):
-	timeFetched = models.FloatField()
+    timeFetched = models.FloatField()

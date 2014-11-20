@@ -1,23 +1,30 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="is">
 <head>
-	<meta charset="utf-8">
-	<title>Bíó</title>
+    <meta charset="utf-8">
+    <meta name='author' content='Bjarni Jens Kristinsson'>
+    <meta name='author' content='Guðrún Þóra Sigurðardóttir'>
+    <meta name='author' content='Kristrún Skúladóttir'>
+    <title>Bíó</title>
+    {% load staticfiles %}
+    <link rel='stylesheet' href='{% static 'movies/style.css' %}'>
+<!--
+    <script src='functionality.js'></script>
+-->
 </head>
 <body>
-	<header>
-		<h1>Bíósýningar</h1>
-	<header/>
-	<div id="theaters">
+    <header>
+        <h1>Bíósýningar</h1>
+    <header/>
+    <div id="theaters">
 
-		<h2 id="chooseTheater">Velja Kvikmyndahús</h2>
-		<ul id="theaterList">
-			{% for key, value in theaterList.items %}
-			<li>
-				<input type="checkbox" name="theater" id="{{ key }}" value="{{ key }}">
-				<label for="{{ key }}">{{ value }}</label>
-			</li>
-
+        <h2 id="chooseTheater">Velja Kvikmyndahús</h2>
+        <ul id="theaterList">
+            {% for key, value in theaterList.items %}
+            <li>
+                <input type="checkbox" name="theater" id="{{ key }}" value="{{ key }}">
+                <label for="{{ key }}">{{ value }}</label>
+            </li>
     		{% endfor %}			
 		</ul>
 	</div>

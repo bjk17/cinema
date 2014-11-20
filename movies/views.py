@@ -3,11 +3,11 @@
 
 from django.http import HttpResponse
 from django.shortcuts import render, render_to_response
-
-from movies.models import Movie,Showtime,Timestamp
 from django.template import Context, loader
 
-import urllib2, json, sys, time
+from movies.models import Movie,Showtime,Timestamp
+
+import sys, time, urllib2, json
 
 
 def index(request):
