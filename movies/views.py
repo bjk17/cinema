@@ -13,17 +13,15 @@ import urllib2, json, sys, time
 def index(request):
     # return render_to_response('index.html', {})
     requestMovies(request)
+    getMoviesFromDB(request)
     showMovies()
     return HttpResponse("<h1>Hallo heimur!</h1> <p>Thetta er prufusidan okkar.</p>")
 
-def requestMovies(request):     
-    # theater = data['results'][4]['showtimes'][0]['theater']
-
+def requestMovies(request):   
     # Get time last request was made and current time
     lastRequest = Timestamp.objects.values('timeFetched')
     currentTime = time.time()
     lastTime = lastRequest[0]['timeFetched']
-    #print currentTime - lastTime
     
     # If there were less than 30 seconds since
     # the last request we wont make another request
@@ -65,7 +63,7 @@ def updateDatabase(request):
             for time in cinema['schedule']:
                 s = Showtime(movie=m, cinema=cinema['theater'], time=time)
                 s.save()
-    '''newTimestamp()
+    newTimestamp()
 
 def newTimestamp():
     # Delete old timestamp from db
@@ -76,7 +74,7 @@ def newTimestamp():
 
     # Save current time in db
     t = Timestamp(timeFetched=ts)
-    t.save()'''
+    t.save()
 
 #We need to "update" the database, check if movie is in newly fetched films
 #If it is
@@ -84,10 +82,16 @@ def newTimestamp():
 
 
 def getMoviesFromDB(request):
-    # print Movie.objects.all().values()
     return Movie.objects.all().values()
 
 def showMovies():
-    print Movie.objects.filter(title='John Wick').values()
+    johnWick = Movie.objects.filter(title='John Wick').values('title', 'restricted', 'released')
+    restrictedTwelve = Movie.objects.filter(restricted=12).values('title')
+    restrictedSixteen = Movie.objects.filter(restricted=16).values('title')
+
+    print johnWick
+    for i in range(0,len(restrictedTwelve)):
+        print restrictedTwelve[i]['title']
+    for i in range(0, len(restrictedSixteen)):
+        print restrictedSixteen[i]['title']
     # movieList = getMoviesFromDB()
-    # lastRequest = Timestamp.objects.values('timeFetched')
