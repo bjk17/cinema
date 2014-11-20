@@ -21,12 +21,15 @@ def requestMovies(request):
     # Get time last request was made and current time
     lastRequest = Timestamp.objects.values('timeFetched')
     currentTime = time.time()
-    lastTime = lastRequest[0]['timeFetched']
+    lastTime = 0
+    
+    if len(lastRequest)>0:
+        lastTime = lastRequest[0]['timeFetched']
     
     # If there were less than 30 seconds since
     # the last request we wont make another request
     # Else we will
-    if((currentTime-lastTime)>30):
+    if (currentTime-lastTime)>30:
         updateDatabase(request)
         print "Ég sótti gögn"  
     else:
