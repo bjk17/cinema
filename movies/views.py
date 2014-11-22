@@ -15,9 +15,14 @@ def index(request):
     requestMovies(request)
     theaters = getTheaters()
     allMovies = getMoviesFromDB(request)
+    showtimes = []
+
+    for movie in allMovies:
+        showtimes.append(getShowtimeForMovie(movie))
+            
 
     t = loader.get_template('index.html')
-    c = Context({'theaterList': theaters, 'allMovies': allMovies})
+    c = Context({'theaterList': theaters, 'allMovies': allMovies, 'showtimes':showtimes})
 
     return HttpResponse(t.render(c))
 
@@ -105,4 +110,7 @@ def newTimestamp():
 #if not we remove the film 
 
 def getMoviesFromDB(request):
-    return Movie.objects.all().values()
+    return Movie.objects.all()
+
+def getShowtimeForMovie(movie):
+    return Showtime.objects.filter(movie=movie)

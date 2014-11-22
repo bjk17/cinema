@@ -40,9 +40,13 @@
 					<p> {{ movie.restricted }} </p>
 					<p> {{ movie.imdb }} </p>
 					<img src="{{ movie.image }}" />
-					<!--
 					<ul id="theaters">
-						
+					{% for st in showtimes %}
+						{% for t in st %}
+						<li> {{ st.cinema }} </li>
+						<li> {{ t }} </li>
+						{% endfor %}
+					{% endfor %}
 					</ul>
 					-->
 				</section>
