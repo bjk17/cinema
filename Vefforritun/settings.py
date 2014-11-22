@@ -20,11 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'vbnat(d*v@npao9@r)s_103zl693x^&rl3rfkm9_$iiq5k14x-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = TEMPLATE_DEBUG = True
 
-TEMPLATE_DEBUG = True
-
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', 'bio.sudo.is', 'sg18-106.gardur.hi.is']
 
 
 # Application definition
@@ -37,8 +35,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'watchmen',
     'movies',
+    'watchmen',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -59,14 +57,6 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
 
-# Cache
-# https://docs.djangoproject.com/en/1.7/topics/cache/
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': 'localhost:8000',
-    }
-}
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -96,3 +86,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+## Local settings, needed in deployment
+try:
+    from Vefforritun.settings_local import *
+
+except ImportError as e:
+    logging.error(e)
