@@ -31,25 +31,24 @@
 		<div id="toSee">
 			<!--einhver foreach lykkja sem ítrar í gegnum allar myndir, býr til eitt card fyrir hvera mynd-->
 		</div>
+
 		<div id="movies">
-				{% for movie in allMovies %}
+				{% for ms in allMovies %}
+
 				<section class="movie">
-					<p> {{ movie.title }} </p>
-					<p> {{ movie.released }} </p>
-					<p> {{ movie.restricted }} </p>
-					<p> {{ movie.imdb }} </p>
-					<img src="{{ movie.image }}" />
+					<p> {{ ms.Movie.title }} </p>
+					<p> {{ ms.Movie.released }} </p>
+					<p> {{ ms.Movie.restricted }} </p>
+					<p> {{ ms.Movie.imdb }} </p>
+					<img src="{{ ms.Movie.image }}" />
 					<ul id="theaters">
-					{% for st in showtimes %}
-						{% for t in st %}
-						<li> {{ st.cinema }} </li>
-						<li> {{ t }} </li>
-						{% endfor %}
+					{% for st in ms.Showtimes %}
+						<li> {{ st }} </li>
 					{% endfor %}
 					</ul>
-					-->
 				</section>
-				{% endfor %}
+
+ 				{% endfor %}
 		</div>
 		<div id="seen"></div>
 	</main>

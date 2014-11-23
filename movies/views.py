@@ -14,15 +14,17 @@ def index(request):
     #Show theaters and movies on site
     requestMovies(request)
     theaters = getTheaters()
-    allMovies = getMoviesFromDB(request)
-    showtimes = []
+    allMovies = getMoviesFromDBWithShowtimes(request)
+    # showtimes = []
 
-    for movie in allMovies:
-        showtimes.append(getShowtimeForMovie(movie))
+    # for movie in allMovies:
+    #     showtimes[movie].append(getShowtimeForMovie(movie))
+
+
             
 
     t = loader.get_template('index.html')
-    c = Context({'theaterList': theaters, 'allMovies': allMovies, 'showtimes':showtimes})
+    c = Context({'theaterList': theaters, 'allMovies': allMovies})
 
     return HttpResponse(t.render(c))
 
@@ -106,9 +108,11 @@ def newTimestamp():
 #We need to "update" the database, check if movie is in newly fetched films
 #If it is
 #if not we remove the film 
+def getMoviesFromDBWithShowtimes(request):
+    movies = []
+    
+    for movie in Movie.objects.all():
+        showtimes = Showtime.objects.filter(movie=movie)
+        movies.append({"Movie":movie, "Showtimes":showtimes})
 
-def getMoviesFromDB(request):
-    return Movie.objects.all()
-
-def getShowtimeForMovie(movie):
-    return Showtime.objects.filter(movie=movie)
+    return movies
