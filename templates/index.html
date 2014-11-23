@@ -16,23 +16,22 @@
     <header>
         <h1>Bíósýningar</h1>
     <header/>
-    <div id="theaters">
-
-        <h2 id="chooseTheater">Velja Kvikmyndahús</h2>
-        <ul id="theaterList">
-            {% for key, value in theaterList.items %}
-            <li>
-                <input type="checkbox" name="theater" id="{{ key }}" value="{{ key }}">
-                <label for="{{ key }}">{{ value }}</label>
-            </li>
-    		{% endfor %}			
-		</ul>
-	</div>
 	<main>
-		<div class="toSee">
+		<div id="theaters">
+	        <h2 id="chooseTheater">Velja Kvikmyndahús</h2>
+	        <ul id="theaterList">
+	            {% for key, value in theaterList.items %}
+    	        	<li>
+        	        	<input type="checkbox" name="theater" id="{{ key }}" value="{{ key }}">
+		                <label for="{{ key }}">{{ value }}</label>
+    		        </li>
+    			{% endfor %}			
+			</ul>
+		</div>
+		<div id="toSee">
 			<!--einhver foreach lykkja sem ítrar í gegnum allar myndir, býr til eitt card fyrir hvera mynd-->
 		</div>
-		<div class="movies">
+		<div id="movies">
 				{% for movie in allMovies %}
 				<section class="movie">
 					<p> {{ movie.title }} </p>
@@ -52,7 +51,7 @@
 				</section>
 				{% endfor %}
 		</div>
-		<div class="seen"></div>
+		<div id="seen"></div>
 	</main>
 	<footer>
 		<!--eithvað um hvaðan gögnin eru fengin?-->

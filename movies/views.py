@@ -28,7 +28,6 @@ def index(request):
 
 def getTheaters():
     theaterList = {
-        'bioParadis' : 'Bíó Paradís',
         'borgarbioAkureyri' : 'Borgarbíó Akureyri',
         'haskolabio' : 'Háskólabíó',
         'laugarasbio' : 'Laugarásbíó',
@@ -37,7 +36,6 @@ def getTheaters():
         'sambioinEgilshöll' : 'Sambíóin Egilshöll',
         'sambioinKeflavik' : 'Sambíóin Keflavík',
         'sambioinKringlunni' : 'Sambíóin Kringlunni',
-        'sambioinSelfossi' : 'Sambíóin Selfossi',
         'smarabio' : 'Smárabíó', 
     }
 
