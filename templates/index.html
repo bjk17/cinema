@@ -8,9 +8,7 @@
     <title>Bíó</title>
     {% load staticfiles %}
     <link rel='stylesheet' href='{% static 'movies/style.css' %}'>
-<!--
-    <script src='functionality.js'></script>
--->
+
 </head>
 <body>
     <header>
@@ -36,12 +34,15 @@
 				{% for ms in allMovies %}
 
 				<section class="movie">
-					<p> {{ ms.Movie.title }} </p>
-					<p> {{ ms.Movie.released }} </p>
-					<p> {{ ms.Movie.restricted }} </p>
-					<p> {{ ms.Movie.imdb }} </p>
+					<h3 class="title"> {{ ms.Movie.title }} </h3>
 					<img src="{{ ms.Movie.image }}" />
-					<ul id="theaters">
+					<ul class="info">
+						<li> {{ ms.Movie.released }} </li>
+						<li> {{ ms.Movie.restricted }} </li>
+						<li> {{ ms.Movie.imdb }} </li>
+					</ul>
+					<p class="showShowtimes">Sjá sýningartíma</p>
+					<ul class="showtimes">
 					{% for st in ms.Showtimes %}
 						<li> {{ st }} </li>
 					{% endfor %}
@@ -55,5 +56,6 @@
 	<footer>
 		<!--eithvað um hvaðan gögnin eru fengin?-->
 	</footer>
+    <script src='{% static 'movies/script.js' %}'></script>
 </body>
 </html>

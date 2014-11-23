@@ -41,8 +41,41 @@ main #theaters #theaterList li {
 main #tosee {}
 main #movies {}
 main #movies .movie {
-	width: 25%;
+	display: inline-block;
+	vertical-align: top;
+	width: 30%;
+	height: 400px;
+	margin: 1rem;
+}
+main #movies .movie img {
+	width: 65%;
 	float: left;
+}
+main #movies .movie .info {
+	font-size: 1.4rem;
+	float: left;
+	list-style: none; 
+}
+main #movies .movie .showShowtimes {
+	font-weight: bold;
+    display: block;
+    width: 100%; 
+    padding: .5em 1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #525252;
+    background: #cacaca;
+	clear: both;
+}
+main #movies .movie .showShowtimes:hover { 
+	background: black; 
+	color: white; 
+	transition: all 1s; 
+}
+
+main #movies .movie .showtimes {
+	visibility: hidden;
+	clear: both;
 }
 main #seen {}
 
