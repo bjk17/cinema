@@ -8,6 +8,11 @@ gagnagrunnur.db
 # local settings
 /Vefforritun/settings_local.py
 
+# LaTeX report
+/report/report.aux
+/report/report.log
+/report/report.pyg
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
