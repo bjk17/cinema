@@ -14,48 +14,48 @@
     <header>
         <h1>Bíósýningar</h1>
     <header/>
-	<main>
-		<div id="theaters">
-	        <h2 id="chooseTheater">Velja Kvikmyndahús</h2>
-	        <ul id="theaterList">
-	            {% for key, value in theaterList.items %}
-    	        	<li>
-        	        	<input type="checkbox" name="theater" id="{{ key }}" value="{{ key }}">
-		                <label for="{{ key }}">{{ value }}</label>
-    		        </li>
-    			{% endfor %}			
-			</ul>
-		</div>
-		<div id="toSee">
-			<!--einhver foreach lykkja sem ítrar í gegnum allar myndir, býr til eitt card fyrir hvera mynd-->
-		</div>
+    <main>
+        <div id="theaters">
+            <h2 id="chooseTheater">Velja Kvikmyndahús</h2>
+            <ul id="theaterList">
+                {% for key, value in theaterList.items %}
+                    <li>
+                        <input type="checkbox" name="theater" id="{{ key }}" value="{{ key }}">
+                        <label for="{{ key }}">{{ value }}</label>
+                    </li>
+                {% endfor %}            
+            </ul>
+        </div>
+        <div id="toSee">
+            <!--einhver foreach lykkja sem ítrar í gegnum allar myndir, býr til eitt card fyrir hvera mynd-->
+        </div>
 
-		<div id="movies">
-				{% for ms in allMovies %}
+        <div id="movies">
+                {% for ms in allMovies %}
 
-				<section class="movie">
-					<h3 class="title"> {{ ms.Movie.title }} </h3>
-					<img src="{{ ms.Movie.image }}" />
-					<ul class="info">
-						<li> {{ ms.Movie.released }} </li>
-						<li> {{ ms.Movie.restricted }} </li>
-						<li> {{ ms.Movie.imdb }} </li>
-					</ul>
-					<p class="showShowtimes">Sjá sýningartíma</p>
-					<ul class="showtimes">
-					{% for st in ms.Showtimes %}
-						<li> {{ st }} </li>
-					{% endfor %}
-					</ul>
-				</section>
+                <section class="movie">
+                    <h3 class="title"> {{ ms.Movie.title }} </h3>
+                    <img src="{{ ms.Movie.image }}" />
+                    <ul class="info">
+                        <li> {{ ms.Movie.released }} </li>
+                        <li> {{ ms.Movie.restricted }} </li>
+                        <li> {{ ms.Movie.imdb }} </li>
+                    </ul>
+                    <p class="showShowtimes">Sjá sýningartíma</p>
+                    <ul class="showtimes">
+                    {% for st in ms.Showtimes %}
+                        <li> {{ st }} </li>
+                    {% endfor %}
+                    </ul>
+                </section>
 
- 				{% endfor %}
-		</div>
-		<div id="seen"></div>
-	</main>
-	<footer>
-		<!--eithvað um hvaðan gögnin eru fengin?-->
-	</footer>
+                {% endfor %}
+        </div>
+        <div id="seen"></div>
+    </main>
+    <footer>
+        <!--eithvað um hvaðan gögnin eru fengin?-->
+    </footer>
     <script src='{% static 'movies/script.js' %}'></script>
 </body>
 </html>
