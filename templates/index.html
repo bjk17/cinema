@@ -16,8 +16,10 @@
     </header>
 	<main>
 		<div id="theaters">
-	        <h2 id="chooseTheater">Velja Kvikmyndahús</h2>
-	        <ul id="theaterList">
+			<div id="chooseTheater">
+	        	<h2>Velja Kvikmyndahús <span id="dropdownArrow">▼</span></h2>
+	        </div>
+	        <ul id="theaterList" class="hidden">
 	            {% for key, value in theaterList.items %}
     	        	<li>
         	        	<input type="checkbox" name="theater" id="{{ key }}" value="{{ key }}">
@@ -26,7 +28,8 @@
     			{% endfor %}			
 			</ul>
 		</div>
-		<div id="toSee">
+		<div id="toSee" class="hidden">
+			<h2>Myndir sem mig langar ógeðslega mikið að sjá!</h2>
 			<!--einhver foreach lykkja sem ítrar í gegnum allar myndir, býr til eitt card fyrir hvera mynd-->
 		</div>
 
@@ -56,6 +59,7 @@
     <footer>
         <!--eithvað um hvaðan gögnin eru fengin?-->
     </footer>
+    <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src='{% static 'movies/script.js' %}'></script>
 </body>
 </html>
