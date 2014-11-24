@@ -1,0 +1,32 @@
+%% xelatex -shell-escape skil8
+\documentclass[a4paper,oneside]{article}
+\usepackage{a4wide}
+\usepackage[icelandic]{babel}
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{graphicx}
+\usepackage{enumerate}
+
+\usepackage{minted}
+\usemintedstyle{perldoc} % default, bw, perldoc
+\setlength\partopsep{-\topsep} % eyðir út bili að ofan og neðan kóða
+%\inputminted[ options ]{ language }{ filename }
+
+\title{Vefforritun}
+\date{\today}
+\author{Bjarni Jens Kristinsson \\ Guðrún Þóra Sigurðardóttir \\ Kristrún Skúladóttir}
+
+\begin{document}
+\maketitle
+
+\section{Hugmynd}
+Texti um það hvernig hugmyndin varð til?
+
+\section{Framkvæmd}
+Nokkur orð um það af hverju við völdum Python og Django og hvernig okkur
+gekk að vinna þetta?
+
+\section{Niðurstaða}
+Lýsa hverju við náðum að afreka?
+
+\end{document}
