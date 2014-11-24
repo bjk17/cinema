@@ -8,12 +8,12 @@
     <title>Bíó</title>
     {% load staticfiles %}
     <link rel='stylesheet' href='{% static 'movies/style.css' %}'>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
     <header>
         <h1>Bíósýningar</h1>
-    <header/>
+    </header>
 	<main>
 		<div id="theaters">
 	        <h2 id="chooseTheater">Velja Kvikmyndahús</h2>
@@ -31,16 +31,17 @@
 		</div>
 
 		<div id="movies">
+			<h2>Allar myndir</h2>
 				{% for ms in allMovies %}
 
 				<section class="movie">
 					<h3 class="title"> {{ ms.Movie.title }} </h3>
-					<img src="{{ ms.Movie.image }}" />
-					<ul class="info">
-						<li> {{ ms.Movie.released }} </li>
-						<li> {{ ms.Movie.restricted }} </li>
-						<li> {{ ms.Movie.imdb }} </li>
-					</ul>
+					<figure><img src="{{ ms.Movie.image }}" /></figure>
+					<div class="info">
+						<p> Gefin út: {{ ms.Movie.released }} </p>
+						<p> Bönnuð innan {{ ms.Movie.restricted }} ára</p>
+						<p> IMDB: {{ ms.Movie.imdb }} </p>
+					</div>
 					<p class="showShowtimes">Sjá sýningartíma</p>
 					<ul class="showtimes">
 					{% for st in ms.Showtimes %}

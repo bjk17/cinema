@@ -14,14 +14,7 @@ def index(request):
     #Show theaters and movies on site
     requestMovies(request)
     theaters = getTheaters()
-    allMovies = getMoviesFromDBWithShowtimes(request)
-    # showtimes = []
-
-    # for movie in allMovies:
-    #     showtimes[movie].append(getShowtimeForMovie(movie))
-
-
-            
+    allMovies = getMoviesFromDBWithShowtimes(request)         
 
     t = loader.get_template('index.html')
     c = Context({'theaterList': theaters, 'allMovies': allMovies})
