@@ -29,6 +29,7 @@ main #theaters {
 	background-color: #00c060;
 	margin-bottom: 0.5rem;
 }
+
 main h2{ font-size: 2rem; padding: 1rem; }
 
 main #chooseTheater #dropdownArrow {
@@ -40,6 +41,7 @@ main #chooseTheater:hover {
 	color: white; 
 	transition: all 1s; 
 }
+
 main #theaters #theaterList { 
 	font-size: 1.8rem;
 	list-style: none; 
@@ -64,7 +66,7 @@ main .movie {
 	vertical-align: top;
 	width: 23%;
 	height: 55.3rem;
-	margin: 1rem;
+	margin: 0.9rem;
 	background-color: #c2efbc;
 }
 #toSee:after, #movies:after {
@@ -133,9 +135,25 @@ footer{}
 }
 @media only screen and (max-width : 500px){
 	main #movies .movie {
+		display: block;
+		margin: 0 auto;
+		min-width: 300px;
 		width: 100%;
+		margin-bottom: 0.5rem;
+		float: none;
 	}
 	main #theaters #theaterList li {
   	width: 100%;
 	}
+	main #movies .movie img {
+	display: block;
+	margin: 0 auto;
+	width: auto;
+	}
+	main #movies .movie .info {
+	text-align: center;
+	padding: 0.5rem;
+	}
+	header h1 {
+	font-size: 7rem;
 }
