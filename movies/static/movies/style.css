@@ -37,9 +37,9 @@ main #chooseTheater #dropdownArrow {
 }
 
 main #chooseTheater:hover { 
-    background: black; 
+    background: #666666; 
     color: white; 
-    transition: all 1s; 
+    transition: all 0.5s; 
 }
 
 main #theaters #theaterList { 
@@ -47,6 +47,7 @@ main #theaters #theaterList {
     list-style: none; 
     width: 100%;
     padding: 1rem;
+    background-color: #51e57a;
 }
 main #theaters #theaterList li {
 	display: inline-block;
@@ -54,52 +55,35 @@ main #theaters #theaterList li {
   	padding:0.5rem;
   	margin-left: 5%;
 }
-main #tosee {}
-main #movies {
+main #moviesTitle, main #toSeeTitle{
+	background: #f2fff2;
+	margin-bottom: 0.5rem;
+}
+main #movies, main #toSee{
 	display: flex;
-	ealign-items: center;
+	align-items: center;
 	justify-content: center;
 	flex-flow: row wrap;
 	padding:1rem; 
-	background: #f2f2f2;
-	}
-main #movies .movie {
+}
+main .movie {
 	vertical-align: top;
 	width: 23%;
 	height: 55.3rem;
 	margin: 0.9rem;
 	background-color: #c2efbc;
 }
-#movies:after {
+#movies:after, #toSee:after {
     display: inline-block;
     width: 25%;
     padding:0.5rem;
     margin-left: 5%;
 }
-main #movies, main #toSee {
-    display: block; 
-    margin:0 auto;
-    padding:1rem; 
-    background: #f2f2f2;
-    }
-main .movie {
-    float:left;
-    vertical-align: top;
-    width: 23%;
-    height: 55.3rem;
-    margin: 0.9rem;
-    background-color: #c2efbc;
-}
-#toSee:after, #movies:after {
-  content:"";
-  display:table;
-  clear:both;
-}
 main .movie h3{ 
      white-space: nowrap;
     overflow: hidden;
     font-size: 1.4rem; 
-    background-color: green; 
+    background-color: #00c060; 
     padding: .5em 1em;
     text-overflow:ellipsis;
 }
@@ -124,12 +108,12 @@ main .movie .showShowtimes {
     text-decoration: none;
     text-transform: uppercase;
     color: black;
-    background: green;
+    background: #51e57a;
 }
 main .movie .showShowtimes:hover { 
-    background: black; 
+    background: #666666; 
     color: white; 
-    transition: all 1s; 
+    transition: all 0.5s; 
 }
 
 main .movie .showtimes {
