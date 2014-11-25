@@ -1,25 +1,41 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-from django.http import HttpResponse
-from django.shortcuts import render, render_to_response
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import redirect, render, render_to_response
 from django.template import Context, loader
 
 from movies.models import Movie,Showtime,Timestamp
+from watchmen.models import Watchman
 
-import sys, time, urllib2, json
+import sys, time, uuid, urllib2, json
 
 
 def index(request):
-    #Show theaters and movies on site
+    if 'id' not in request.GET:
+        return _redirectToNewID(request)
+    
+    id = request.GET.get('id')
+    try:
+        wm = Watchman.objects.get(id=id)
+        #~ return HttpResponse( 'id: ' + ID + '</br> Movies: ' + wm.get_movies() )
+    except Watchman.DoesNotExist:
+        return _redirectToNewID(request)
+    
+    # Show theaters and movies on site
     requestMovies(request)
     theaters = getTheaters()
     allMovies = getMoviesFromDBWithShowtimes(request)         
 
     t = loader.get_template('index.html')
-    c = Context({'theaterList': theaters, 'allMovies': allMovies})
+    c = Context({'theaterList': theaters, 'myMovies': wm.movies.all(), 'allMovies': allMovies})
 
     return HttpResponse(t.render(c))
+
+def _redirectToNewID(request):
+    newID = str(uuid.uuid4())
+    Watchman(id=newID).save()
+    return redirect("/?id="+newID)
 
 def getTheaters():
     theaterList = {
@@ -48,7 +64,7 @@ def requestMovies(request):
     # If there were less than 30 seconds since
     # the last request we wont make another request
     # Else we will
-    if (currentTime-lastTime)>30:
+    if (currentTime-lastTime)>60*60:
         updateDatabase(request)
         print "Ég sótti gögn"  
     else:

@@ -14,22 +14,36 @@
     <header>
         <h1>Bíósýningar</h1>
     </header>
-	<main>
-		<div id="theaters">
-	        <h2 id="chooseTheater">Velja Kvikmyndahús</h2>
-	        <ul id="theaterList">
-	            {% for key, value in theaterList.items %}
-    	        	<li>
-        	        	<input type="checkbox" name="theater" id="{{ key }}" value="{{ key }}">
-		                <label for="{{ key }}">{{ value }}</label>
-    		        </li>
-    			{% endfor %}			
-			</ul>
-		</div>
-		<div id="toSee">
-			<!--einhver foreach lykkja sem ítrar í gegnum allar myndir, býr til eitt card fyrir hvera mynd-->
-		</div>
-
+    <main>
+        <div id="theaters">
+            <div id="chooseTheater">
+                <h2>Velja Kvikmyndahús <span id="dropdownArrow">▼</span></h2>
+            </div>
+            <ul id="theaterList" class="hidden">
+                {% for key, value in theaterList.items %}
+                    <li>
+                        <input type="checkbox" name="theater" id="{{ key }}" value="{{ key }}">
+                        <label for="{{ key }}">{{ value }}</label>
+                    </li>
+                {% endfor %}            
+            </ul>
+        </div>
+        <div id="toSee">
+            <!--einhver foreach lykkja sem ítrar í gegnum allar myndir, býr til eitt card fyrir hvera mynd-->
+            <h2>Mínar myndir</h2>
+                {% for movie in myMovies %}
+                <section class="movie">
+                    <h3 class="title"> {{ movie.title }} </h3>
+                    <figure><img src="{{ movie.image }}" /></figure>
+                    <div class="info">
+                        <p> Gefin út: {{ movie.released }} </p>
+                        <p> Bönnuð innan {{ movie.restricted }} ára</p>
+                        <p> IMDB: {{ movie.imdb }} </p>
+                    </div>
+                    <p class="showShowtimes">Engir sýningartímar hérna núna!</p>
+                </section>
+                {% endfor %}
+        </div>
 		<div id="movies">
 			<h2>Allar myndir</h2>
 				{% for ms in allMovies %}
@@ -56,6 +70,7 @@
     <footer>
         <!--eithvað um hvaðan gögnin eru fengin?-->
     </footer>
+    <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script src='{% static 'movies/script.js' %}'></script>
 </body>
 </html>

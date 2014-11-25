@@ -2,40 +2,51 @@
 
 
 html,body {
-	font-size: 10px;
+    font-size: 10px;
     background-color: #aaaaaa;
 }
 
-header { margin-bottom: 0.5rem;}
+header { margin-bottom: 0.5rem; }
 
 header h1 {
-	font-size: 8rem;
-	text-align: center; 
-	background: rgba(255, 255, 255, 0.9); 
-	width: 100%; 
-	max-width: 1200px; 
-	margin: 0 auto; 
-	padding: 1rem; 
+    font-size: 8rem;
+    text-align: center; 
+    background: rgba(255, 255, 255, 0.9); 
+    width: 100%; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 1rem; 
 }
 
 main {
-	max-width: 1200px;
-	margin: 0 auto;	
-	
+    max-width: 1200px;
+    margin: 0 auto; 
+    
 }
 main #theaters {
-	display: block;
-	margin: 0 auto;
-	padding: 1rem;
-	background-color: #00c060;
-	margin-bottom: 0.5rem;
+    display: block;
+    margin: 0 auto;
+    background-color: #00c060;
+    margin-bottom: 0.5rem;
 }
-main #theaters h2, main #movies h2{ font-size: 2rem; padding: 1rem;}
-main theaters h2{background-color: #444444}
+
+main h2{ font-size: 2rem; padding: 1rem; }
+
+main #chooseTheater #dropdownArrow {
+    font-size: 1rem;
+}
+
+main #chooseTheater:hover { 
+    background: black; 
+    color: white; 
+    transition: all 1s; 
+}
+
 main #theaters #theaterList { 
-	font-size: 1.8rem;
-	list-style: none; 
-	width: 100%;
+    font-size: 1.8rem;
+    list-style: none; 
+    width: 100%;
+    padding: 1rem;
 }
 main #theaters #theaterList li {
 	display: inline-block;
@@ -60,33 +71,53 @@ main #movies .movie {
 	background-color: #c2efbc;
 }
 #movies:after {
+    display: inline-block;
+    width: 25%;
+    padding:0.5rem;
+    margin-left: 5%;
+}
+main #movies, main #toSee {
+    display: block; 
+    margin:0 auto;
+    padding:1rem; 
+    background: #f2f2f2;
+    }
+main .movie {
+    float:left;
+    vertical-align: top;
+    width: 23%;
+    height: 55.3rem;
+    margin: 0.9rem;
+    background-color: #c2efbc;
+}
+#toSee:after, #movies:after {
   content:"";
   display:table;
   clear:both;
 }
-main #movies .movie h3{ 
-	 white-space: nowrap;
-  	overflow: hidden;
-	font-size: 1.4rem; 
-	background-color: green; 
-	padding: .5em 1em;
-	text-overflow:ellipsis;
-	}
+main .movie h3{ 
+     white-space: nowrap;
+    overflow: hidden;
+    font-size: 1.4rem; 
+    background-color: green; 
+    padding: .5em 1em;
+    text-overflow:ellipsis;
+}
 
-main #movies .movie img {
-	display: block;
-	margin: 0 auto;
-	width: 100%;
-	height: 400px;
+main .movie img {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 400px;
 }
-main #movies .movie .info {
-	display: block;
-	font-size: 1.4rem;
-	list-style: none; 
-	height: 10rem;
+main .movie .info {
+    display: block;
+    font-size: 1.4rem;
+    list-style: none; 
+    height: 10rem;
 }
-main #movies .movie .showShowtimes {
-	font-weight: bold;
+main .movie .showShowtimes {
+    font-weight: bold;
     display: block;
     width: 100%; 
     padding: .5em 1em;
@@ -95,23 +126,25 @@ main #movies .movie .showShowtimes {
     color: black;
     background: green;
 }
-main #movies .movie .showShowtimes:hover { 
-	background: black; 
-	color: white; 
-	transition: all 1s; 
+main .movie .showShowtimes:hover { 
+    background: black; 
+    color: white; 
+    transition: all 1s; 
 }
 
-main #movies .movie .showtimes {
-	visibility: hidden;
+main .movie .showtimes {
+    visibility: hidden;
 }
 main #seen {}
 
 footer{}
 
+.hidden { display: none; }
+
 @media only screen and (max-width: 1000px){
-	main #movies .movie {
-	width: 30%;
-	}
+    main #movies .movie {
+        width: 30%;
+    }
 }
 @media only screen and (max-width: 800px){
 	main #movies .movie {
@@ -126,7 +159,7 @@ footer{}
   		width: auto;
   		overflow-x: hidden;
 }
-	main #movies .movie {
+	main .movie {
 		display: block;
 		margin: 0 auto;
 		min-width: 300px;
@@ -137,15 +170,16 @@ footer{}
 	main #theaters #theaterList li {
   	width: 100%;
 	}
-	main #movies .movie img {
+	main .movie img {
 	display: block;
 	margin: 0 auto;
 	width: auto;
 	}
-	main #movies .movie .info {
+	main .movie .info {
 	text-align: center;
 	padding: 0.5rem;
 	}
 	header h1 {
 	font-size: 7rem;
+    }
 }
