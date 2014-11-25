@@ -134,7 +134,7 @@ footer{}
 	}
 }
 @media only screen and (max-width : 500px){
-	main #movies .movie {
+	main .movie {
 		display: block;
 		margin: 0 auto;
 		min-width: 300px;
@@ -145,12 +145,12 @@ footer{}
 	main #theaters #theaterList li {
   	width: 100%;
 	}
-	main #movies .movie img {
+	main .movie img {
 	display: block;
 	margin: 0 auto;
 	width: auto;
 	}
-	main #movies .movie .info {
+	main .movie .info {
 	text-align: center;
 	padding: 0.5rem;
 	}
