@@ -45,13 +45,14 @@ main #theaters #theaterList li {
 }
 main #tosee {}
 main #movies {
-	display: block; 
-	margin:0 auto;
+	display: flex;
+	ealign-items: center;
+	justify-content: center;
+	flex-flow: row wrap;
 	padding:1rem; 
 	background: #f2f2f2;
 	}
 main #movies .movie {
-	float:left;
 	vertical-align: top;
 	width: 23%;
 	height: 55.3rem;
@@ -121,6 +122,10 @@ footer{}
 	}
 }
 @media only screen and (max-width : 500px){
+	html, body {
+  		width: auto;
+  		overflow-x: hidden;
+}
 	main #movies .movie {
 		display: block;
 		margin: 0 auto;
