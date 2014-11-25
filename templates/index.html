@@ -28,43 +28,44 @@
                 {% endfor %}            
             </ul>
         </div>
-        <div id="toSee">
-            <!--einhver foreach lykkja sem ítrar í gegnum allar myndir, býr til eitt card fyrir hvera mynd-->
-            <h2>Mínar myndir</h2>
+        <div id="toSeeTitle">
+        	<h2>Mínar myndir</h2>
+        	<div id="toSee">
                 {% for movie in myMovies %}
-                <section class="movie">
-                    <h3 class="title"> {{ movie.title }} </h3>
-                    <figure><img src="{{ movie.image }}" /></figure>
-                    <div class="info">
-                        <p> Gefin út: {{ movie.released }} </p>
-                        <p> Bönnuð innan {{ movie.restricted }} ára</p>
-                        <p> IMDB: {{ movie.imdb }} </p>
-                    </div>
-                    <p class="showShowtimes">Engir sýningartímar hérna núna!</p>
-                </section>
+                	<section class="movie">
+                    	<h3 class="title"> {{ movie.title }} </h3>
+                    	<figure><img src="{{ movie.image }}" /></figure>
+                    	<div class="info">
+                        	<p> Gefin út: {{ movie.released }} </p>
+                        	<p> Bönnuð innan {{ movie.restricted }} ára</p>
+                        	<p> IMDB: {{ movie.imdb }} </p>
+                    	</div>
+                    	<p class="showShowtimes">Engir sýningartímar hérna núna!</p>
+                	</section>
                 {% endfor %}
-        </div>
-
-        <div id="movies">
-            <h2>Allar myndir</h2>
-                {% for ms in allMovies %}
-
-                <section class="movie">
-                    <h3 class="title"> {{ ms.Movie.title }} </h3>
-                    <figure><img src="{{ ms.Movie.image }}" /></figure>
-                    <div class="info">
-                        <p> Gefin út: {{ ms.Movie.released }} </p>
-                        <p> Bönnuð innan {{ ms.Movie.restricted }} ára</p>
-                        <p> IMDB: {{ ms.Movie.imdb }} </p>
-                    </div>
-                    <p class="showShowtimes">Sjá sýningartíma</p>
-                    <ul class="showtimes">
-                    {% for st in ms.Showtimes %}
-                        <li> {{ st }} </li>
-                    {% endfor %}
-                    </ul>
-                </section>
-                {% endfor %}
+        	</div>
+    	</div>
+		<div id="moviesTitle">
+			<h2>Allar myndir</h2>
+			<div id="movies">
+					{% for ms in allMovies %}
+					<section class="movie {% for stimes in ms.Showtimes %} {{ stimes.getCinema }} {% endfor %}">
+						<h3 class="title"> {{ ms.Movie.title }} </h3>
+						<figure><img src="{{ ms.Movie.image }}" /></figure>
+						<div class="info">
+							<p> Gefin út: {{ ms.Movie.released }} </p>
+							<p> Bönnuð innan {{ ms.Movie.restricted }} ára</p>
+							<p> IMDB: {{ ms.Movie.imdb }} </p>
+						</div>
+						<p class="showShowtimes">Sjá sýningartíma</p>
+						<ul class="showtimes">
+						{% for st in ms.Showtimes %}
+							<li> {{ st }} </li>
+						{% endfor %}
+						</ul>
+					</section>
+                	{% endfor %}
+               </div>
         </div>
         <div id="seen"></div>
     </main>
