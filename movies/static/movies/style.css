@@ -11,7 +11,7 @@ header { margin-bottom: 0.5rem; }
 header h1 {
     font-size: 8rem;
     text-align: center; 
-    background: rgba(255, 255, 255, 0.9); 
+    background: #f2fff2; 
     width: 100%; 
     max-width: 1200px; 
     margin: 0 auto; 
@@ -99,6 +99,7 @@ main .movie .info {
     font-size: 1.4rem;
     list-style: none; 
     height: 10rem;
+    padding: 1rem;
 }
 main .movie .showShowtimes {
     font-weight: bold;
@@ -126,12 +127,12 @@ footer{}
 .hidden { display: none; }
 
 @media only screen and (max-width: 1000px){
-    main #movies .movie {
+    main .movie {
         width: 30%;
     }
 }
 @media only screen and (max-width: 800px){
-	main #movies .movie {
+	main .movie{
 	width: 45%;
 	}
 	main #theaters #theaterList li {
