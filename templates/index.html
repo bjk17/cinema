@@ -22,7 +22,7 @@
             <ul id="theaterList" class="hidden">
                 {% for key, value in theaterList.items %}
                     <li>
-                        <input type="checkbox" name="theater" id="{{ key }}" value="{{ key }}">
+                        <input type="checkbox" id="{{ key }}" class="theater" name="theater" value="{{ key }}">
                         <label for="{{ key }}">{{ value }}</label>
                     </li>
                 {% endfor %}            
@@ -40,7 +40,7 @@
                         	<p> Bönnuð innan {{ movie.restricted }} ára</p>
                         	<p> IMDB: {{ movie.imdb }} </p>
                     	</div>
-                    	<p class="showShowtimes">Engir sýningartímar hérna núna!</p>
+                    	<p class="moveMovie">Engir sýningartímar hérna núna!</p>
                 	</section>
                 {% endfor %}
         	</div>
@@ -57,7 +57,7 @@
 							<p> Bönnuð innan {{ ms.Movie.restricted }} ára</p>
 							<p> IMDB: {{ ms.Movie.imdb }} </p>
 						</div>
-						<p class="showShowtimes">Sjá sýningartíma</p>
+						<p class="moveMovie">Bæta við mínar myndir</p>
 						<ul class="showtimes">
 						{% for st in ms.Showtimes %}
 							<li> {{ st }} </li>

@@ -37,6 +37,7 @@ main #chooseTheater #dropdownArrow {
 }
 
 main #chooseTheater:hover { 
+    cursor: pointer;
     background: #666666; 
     color: white; 
     transition: all 0.5s; 
@@ -54,6 +55,9 @@ main #theaters #theaterList li {
   	width: 25%;
   	padding:0.5rem;
   	margin-left: 5%;
+}
+main #theaters #theaterList li input,label:hover {
+    cursor: pointer;
 }
 main #moviesTitle, main #toSeeTitle{
 	background: #f2fff2;
@@ -101,7 +105,7 @@ main .movie .info {
     height: 10rem;
     padding: 1rem;
 }
-main .movie .showShowtimes {
+main .movie .moveMovie {
     font-weight: bold;
     display: block;
     width: 100%; 
@@ -111,7 +115,8 @@ main .movie .showShowtimes {
     color: black;
     background: #51e57a;
 }
-main .movie .showShowtimes:hover { 
+main .movie .moveMovie:hover { 
+    cursor: pointer;
     background: #666666; 
     color: white; 
     transition: all 0.5s; 

@@ -20,7 +20,7 @@ class Showtime(models.Model):
     time = models.CharField(max_length=20)
      
     def getCinema(self):
-        reps = {u'á':'a', u'ð':'d', u'é':'e', u'í':'i', u'ó':'o', u'ú':'u', u'ý':'y', u'þ':'th', u'æ':'ae', u'ö':'o'}
+        reps = {u'Á':'A', u'á':'a', u'ð':'d', u'É':'E', u'é':'e', u'Í':'I', u'í':'i', u'Ó':'O', u'ó':'o', u'Ú':'U', u'ú':'u', u'Ý':'Y', u'ý':'y', u'Þ':'Th', u'þ':'th', u'Æ':'Ae', u'æ':'ae', u'Ö':'O', u'ö':'o', u' ':''}
         cinema = replace_all(self.cinema,reps)
         return u'%s' % (cinema,)
 

@@ -38,15 +38,15 @@ def _redirectToNewID(request):
 
 def _getTheaters():
     theaterList = {
-        'borgarbioAkureyri' : 'Borgarbíó Akureyri',
-        'haskolabio' : 'Háskólabíó',
-        'laugarasbio' : 'Laugarásbíó',
-        'sambioinAkureyri' : 'Sambíóin Akureyri',
-        'sambioinAlfabakka' : 'Sambíóin Álfabakka',
-        'sambioinEgilshöll' : 'Sambíóin Egilshöll',
-        'sambioinKeflavik' : 'Sambíóin Keflavík',
-        'sambioinKringlunni' : 'Sambíóin Kringlunni',
-        'smarabio' : 'Smárabíó', 
+        'BorgarbioAkureyri' : 'Borgarbíó Akureyri',
+        'Haskolabio' : 'Háskólabíó',
+        'Laugarasbio' : 'Laugarásbíó',
+        'SambioinAkureyri' : 'Sambíóin Akureyri',
+        'SambioinAlfabakka' : 'Sambíóin Álfabakka',
+        'SambioinEgilsholl' : 'Sambíóin Egilshöll',
+        'SambioinKeflavik' : 'Sambíóin Keflavík',
+        'SambioinKringlunni' : 'Sambíóin Kringlunni',
+        'Smarabio' : 'Smárabíó',
     }
 
     return theaterList
