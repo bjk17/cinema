@@ -1,11 +1,17 @@
 $( document ).ready(function() {
 
-
+	initiatePage();
 	//eyða út?
 	//haka við öll bíó
 	//geyma fyrra val?
-	updateMovies();
+	
 });
+
+
+function initiatePage() {
+	updateMovies();
+	myMoviesEmpty();
+}
 
 //dropdown for theaters
 $("#chooseTheater").on("click", function() {
@@ -17,6 +23,7 @@ $( document ).on("click", "#movies .movie .moveMovie", function() {
     var element = $(this).closest(".movie").detach();
     $(this).text("Taka úr mínum myndum");
     $("#toSee").append(element);
+    $("#toSeeTitle").removeClass("hidden");
 });
 
 //move movie back to "all movies"
@@ -24,7 +31,22 @@ $( document ).on("click", "#toSee .movie .moveMovie", function() {
     var element = $(this).closest('.movie').detach();
     $(this).text("Bæta við mínar myndir");
     $("#movies").append(element);
+
+    myMoviesEmpty();
 });
+
+//hide "my movies" if there are no chosen movies
+function myMoviesEmpty() {
+   // if ( $( "#toSeeTitle" ).length === 1 ) {
+   	if(isEmpty($("#toSeeTitle #toSee"))) {
+    	$("#toSeeTitle").addClass("hidden");
+    }
+};
+
+function isEmpty( el ){
+    return !$.trim(el.html());
+}
+
 
 //Returns the user preferred theaters
 function getSelectedTheaters (x,y) {
@@ -59,23 +81,3 @@ $( "input:checkbox" ).change(function() {
 	updateMovies(theaters);
  	console.log(theaters);
 });
-
-/*
-$(this).val();
-Or if you have set a class or id for it, you can:
-
-$('#check_id').val();
-$('.check_class').val();
-Also you can check whether it is checked or not like:
-
-if ($('#check_id').is(":checked"))
-{
-  // it is checked
-}
-
-//$('#toSee:empty').hide();
-/*
-pæling til að fela tómt div
-$('#australopithecus #homo-sapiens').length // Should be 1
-$('#homo-sapiens #homo-herectus').length // Should be 0
-*/

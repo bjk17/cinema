@@ -38,7 +38,7 @@ def _redirectToNewID(request):
 
 def _getTheaters():
     theaterList = {
-        'BorgarbioAkureyri' : 'Borgarbíó Akureyri',
+        'Borgarbio' : 'Borgarbíó Akureyri',
         'Haskolabio' : 'Háskólabíó',
         'Laugarasbio' : 'Laugarásbíó',
         'SambioinAkureyri' : 'Sambíóin Akureyri',

@@ -22,13 +22,13 @@
             <ul id="theaterList" class="hidden">
                 {% for key, value in theaterList.items %}
                     <li>
-                        <input type="checkbox" id="{{ key }}" class="theater" name="theater" value="{{ key }}">
+                        <input type="checkbox" id="{{ key }}" class="theater" name="theater" value="{{ key }}" checked>
                         <label for="{{ key }}">{{ value }}</label>
                     </li>
                 {% endfor %}            
             </ul>
         </div>
-        <div id="toSeeTitle">
+        <div id="toSeeTitle" class="hidden">
         	<h2>Mínar myndir</h2>
         	<div id="toSee">
                 {% for movie in myMovies %}
