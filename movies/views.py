@@ -16,7 +16,7 @@ def index(request):
         return _redirectToNewID(request)
     
     try:
-        id = request.GET.get('id')
+        id = request.GET.get('id', None)
         wm = Watchman.objects.get(id=id)
     except Watchman.DoesNotExist:
         return _redirectToNewID(request)

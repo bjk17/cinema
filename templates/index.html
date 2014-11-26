@@ -29,10 +29,10 @@
             </ul>
         </div>
         <div id="toSeeTitle" class="hidden">
-        	<h2>Mínar myndir</h2>
-        	<div id="toSee">
+            <h2>Mínar myndir</h2>
+            <div id="toSee">
                 {% for movie in myMovies %}
-                    <section class="movie">
+                    <section class="movie" id="{{ movie.id }}">
                         <h3 class="title"> {{ movie.title }} </h3>
                         <figure><img src="{{ movie.image }}" /></figure>
                         <div class="info">
@@ -40,7 +40,7 @@
                             <p> Bönnuð innan {{ movie.restricted }} ára</p>
                             <p> IMDB: {{ movie.imdb }} </p>
                         </div>
-                        <p class="moveMovie">Engir sýningartímar hérna núna!</p>
+                        <p class="moveMovie">Taka úr mínum myndum</p>
                     </section>
                 {% endfor %}
             </div>
@@ -49,7 +49,7 @@
             <h2>Allar myndir</h2>
             <div id="movies">
                     {% for ms in allMovies %}
-                    <section class="movie {% for stimes in ms.Showtimes %} {{ stimes.getCinema }} {% endfor %}">
+                    <section class="movie {% for stimes in ms.Showtimes %} {{ stimes.getCinema }} {% endfor %}" id="{{ ms.Movie.id }}">
                         <h3 class="title"> {{ ms.Movie.title }} </h3>
                         <figure><img src="{{ ms.Movie.image }}" /></figure>
                         <div class="info">
