@@ -12,6 +12,17 @@ class Movie(models.Model):
     
     unique_together = ("title", "released")
     
+    def getShowtimeList(self):
+        showtimes = Showtime.objects.filter(movie=self)
+        dictionary = {}
+        for st in showtimes:
+            cinema = st.cinema
+            if cinema in dictionary:
+                dictionary[cinema].append(st.time)
+            else:
+                dictionary[cinema]=[st.time]
+        return dictionary
+    
     def __unicode__(self):
         return u'%s (%s)' % (self.title, self.released)
 
