@@ -1,15 +1,15 @@
 $( document ).ready(function() {
 
 
-	//eyða út?
-	//haka við öll bíó
-	//geyma fyrra val?
-	updateMovies();
+    //eyða út?
+    //haka við öll bíó
+    //geyma fyrra val?
+    updateMovies();
 });
 
 //dropdown for theaters
 $("#chooseTheater").on("click", function() {
-	$( "#theaterList" ).toggleClass( "hidden" );
+    $( "#theaterList" ).toggleClass( "hidden" );
 });
 
 //move movie to "my movies"
@@ -29,35 +29,36 @@ $( document ).on("click", "#toSee .movie .moveMovie", function() {
 //Returns the user preferred theaters
 function getSelectedTheaters (x,y) {
     var checkedValues = $(".theater:checked").map(function() {
-	 	return this.value;
- 	}).get();
+        return this.value;
+    }).get();
     return checkedValues;
 };
 
 //shows movies based on user's choice of theaters
 function updateMovies() {
-	var theaters = getSelectedTheaters();
-	$(".movie").each( function(j, movie){
-    	$(movie).hide();
-	});
-	jQuery.each( theaters, function(i, theater) {
-		console.log(i+theater);
-		$(".movie").each( function(j, movie){
-    		if($(movie).hasClass(theater)){
-    			$(movie).show();
-    			//fela allar fyrst?
-    			//birta mynd
-				//birta sýningartíma fyrir það bíó
-    		}
-		});
-	});
+    var theaters = getSelectedTheaters();
+    $(".movie").each( function(j, movie){
+        //~ Er buggy, virkar ekki hjá Bjarna
+        // $(movie).hide();
+    });
+    jQuery.each( theaters, function(i, theater) {
+        console.log(i+theater);
+        $(".movie").each( function(j, movie){
+            if($(movie).hasClass(theater)){
+                $(movie).show();
+                //fela allar fyrst?
+                //birta mynd
+                //birta sýningartíma fyrir það bíó
+            }
+        });
+    });
 };
 
 //listens to changes in user theater choice
 $( "input:checkbox" ).change(function() {
-	
-	updateMovies(theaters);
- 	console.log(theaters);
+    
+    updateMovies(theaters);
+    console.log(theaters);
 });
 
 /*

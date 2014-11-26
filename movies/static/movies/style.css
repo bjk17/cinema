@@ -51,31 +51,31 @@ main #theaters #theaterList {
     background-color: #51e57a;
 }
 main #theaters #theaterList li {
-	display: inline-block;
-  	width: 25%;
-  	padding:0.5rem;
-  	margin-left: 5%;
+    display: inline-block;
+    width: 25%;
+    padding:0.5rem;
+    margin-left: 5%;
 }
 main #theaters #theaterList li input,label:hover {
     cursor: pointer;
 }
 main #moviesTitle, main #toSeeTitle{
-	background: #f2fff2;
-	margin-bottom: 0.5rem;
+    background: #f2fff2;
+    margin-bottom: 0.5rem;
 }
 main #movies, main #toSee{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-flow: row wrap;
-	padding:1rem; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: row wrap;
+    padding:1rem; 
 }
 main .movie {
-	vertical-align: top;
-	width: 23%;
-	height: 55.3rem;
-	margin: 0.9rem;
-	background-color: #c2efbc;
+    vertical-align: top;
+    width: 23%;
+    height: 55.3rem;
+    margin: 0.9rem;
+    background-color: #c2efbc;
 }
 #movies:after, #toSee:after {
     display: inline-block;
@@ -137,39 +137,39 @@ footer{}
     }
 }
 @media only screen and (max-width: 800px){
-	main .movie{
-	width: 45%;
-	}
-	main #theaters #theaterList li {
-  	width: 40%;
-	}
+    main .movie{
+    width: 45%;
+    }
+    main #theaters #theaterList li {
+    width: 40%;
+    }
 }
 @media only screen and (max-width : 500px){
-	html, body {
-  		width: auto;
-  		overflow-x: hidden;
+    html, body {
+        width: auto;
+        overflow-x: hidden;
 }
-	main .movie {
-		display: block;
-		margin: 0 auto;
-		min-width: 300px;
-		width: 100%;
-		margin-bottom: 0.5rem;
-		float: none;
-	}
-	main #theaters #theaterList li {
-  	width: 100%;
-	}
-	main .movie img {
-	display: block;
-	margin: 0 auto;
-	width: auto;
-	}
-	main .movie .info {
-	text-align: center;
-	padding: 0.5rem;
-	}
-	header h1 {
-	font-size: 7rem;
+    main .movie {
+        display: block;
+        margin: 0 auto;
+        min-width: 300px;
+        width: 100%;
+        margin-bottom: 0.5rem;
+        float: none;
+    }
+    main #theaters #theaterList li {
+    width: 100%;
+    }
+    main .movie img {
+    display: block;
+    margin: 0 auto;
+    width: auto;
+    }
+    main .movie .info {
+    text-align: center;
+    padding: 0.5rem;
+    }
+    header h1 {
+    font-size: 7rem;
     }
 }
