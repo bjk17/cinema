@@ -34,7 +34,20 @@
                 {% for movie in myMovies %}
                     <section class="movie" id="{{ movie.id }}">
                         <h3 class="title"> {{ movie.title }} </h3>
-                        <figure><img src="{{ movie.image }}" /></figure>
+                        <div class="figureAndShowtimes">
+                            <img src="{{ movie.Movie.image }}" />
+                            <div class="showtimes">
+                                <ul id="showtimes">
+                                    {% for st in movie.Showtimes %}
+                                    <li>{{ st.cinema}}
+                                        <ul>
+                                            <li> {{ st.time }} </li>
+                                        </ul>
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
                         <div class="info">
                             <p> Gefin út: {{ movie.released }} </p>
                             <p> Bönnuð innan {{ movie.restricted }} ára</p>
@@ -51,7 +64,22 @@
                     {% for ms in allMovies %}
                     <section class="movie {% for stimes in ms.Showtimes %} {{ stimes.getCinema }} {% endfor %}" id="{{ ms.Movie.id }}">
                         <h3 class="title"> {{ ms.Movie.title }} </h3>
-                        <figure><img src="{{ ms.Movie.image }}" /></figure>
+                        <div class="figureAndShowtimes">
+                            <img src="{{ ms.Movie.image }}" />
+                            <div class="showtimes">
+                                <ul id="showtimes">
+                                {% for cinema in ms.getDummyList %}
+                                    <li> {{ cinema }}
+                                        <ul>
+                                            {% for st in showtimes %}
+                                            <li>{{ st }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
                         <div class="info">
                             <p> Gefin út: {{ ms.Movie.released }} </p>
                             <p> Bönnuð innan {{ ms.Movie.restricted }} ára</p>

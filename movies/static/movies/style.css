@@ -9,6 +9,8 @@ html,body {
 header { margin-bottom: 0.5rem; }
 
 header h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
     font-size: 8rem;
     text-align: center; 
     background: #f2fff2; 
@@ -30,15 +32,21 @@ main #theaters {
     margin-bottom: 0.5rem;
 }
 
-main h2{ font-size: 2rem; padding: 1rem; }
+main h2{ 
+    font-size: 2rem; 
+    padding: 1rem; 
+    font-family: 'Droid Serif', serif; 
+    font-weight: 300;
+}
 main #chooseTheater #dropdownArrow {
     font-size: 1rem;
 }
 
 main #chooseTheater:hover { 
+    background: #00c060;  
     cursor: pointer;
-    background: #666666; 
-    color: white; 
+    color: black; 
+    -moz-transition: all 0.5s;
     transition: all 0.5s; 
 }
 
@@ -50,6 +58,7 @@ main #theaters #theaterList {
     background-color: #51e57a;
 }
 main #theaters #theaterList li {
+    font-family: 'Lato', sans-serif;
     display: inline-block;
     width: 25%;
     padding:0.5rem;
@@ -83,21 +92,46 @@ main .movie {
     margin-left: 5%;
 }
 main .movie h3{ 
-     white-space: nowrap;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    white-space: nowrap;
     overflow: hidden;
     font-size: 1.4rem; 
     background-color: #00c060; 
     padding: .5em 1em;
     text-overflow:ellipsis;
 }
-
+main .movie .figureAndShowtimes{
+    width: 100%;
+    height: 400px;
+    position: relative;
+}
 main .movie img {
     display: block;
     margin: 0 auto;
     width: 100%;
     height: 400px;
+    position: absolute;
+    z-index: 10;
+}
+main .showtimes {
+    display: none;
+}
+main .visible{
+    display:inline;
+    background-color: #aabbcc;
+    z-index: 20;
+}
+main .showtimes li{
+    list-style: none; 
+}
+main .movie .showtimes{
+    width: 100%;
+    height: 100%;
+    position: absolute;
 }
 main .movie .info {
+    font-family: 'Lato', sans-serif;
     display: block;
     font-size: 1.4rem;
     list-style: none; 
@@ -105,6 +139,8 @@ main .movie .info {
     padding: 1rem;
 }
 main .movie .moveMovie {
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
     font-weight: bold;
     display: block;
     width: 100%; 
@@ -115,14 +151,11 @@ main .movie .moveMovie {
     background: #51e57a;
 }
 main .movie .moveMovie:hover { 
+    background: #00c060; 
     cursor: pointer;
-    background: #666666; 
-    color: white; 
+    color:black; 
+    -moz-transition: all 0.5s;
     transition: all 0.5s; 
-}
-
-main .movie .showtimes {
-    visibility: hidden;
 }
 main #seen {}
 
@@ -147,8 +180,16 @@ footer{}
     html, body {
         width: auto;
         overflow-x: hidden;
-}
-    main .movie {
+    }
+    main #movies .movie {
+        display: block;
+        margin: 0 auto;
+        min-width: 300px;
+        width: 100%;
+        margin-bottom: 0.5rem;
+        float: none;
+    }
+    main #toSee .movie {
         display: block;
         margin: 0 auto;
         min-width: 300px;

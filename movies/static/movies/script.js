@@ -75,8 +75,14 @@ function myMoviesEmpty() {
 function isEmpty( el ){
     return !$.trim(el.html());
 }
+//Show showtimes
+$( document ).on("click", ".movie .figureAndShowtimes", function() {
+	var showtimesParent = $(this).parent();
+	var showtimes = showtimesParent.find(".showtimes");
 
-
+	showtimes.toggleClass("visible");
+	console.log("Hæ!");
+});  
 //Returns the user preferred theaters
 function getSelectedTheaters (x,y) {
     var checkedValues = $(".theater:checked").map(function() {
