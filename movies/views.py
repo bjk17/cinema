@@ -24,10 +24,12 @@ def index(request):
     # Show theaters and movies on site
     _updateDataIfNeccessary(request)
     theaters = _getTheaters()
-    allMovies = _getMoviesFromDBWithShowtimes(request)         
-
+    wmMovies = wm.movies.all()
+    otherMovies = _getMoviesFromDB(request)
+    #~ otherMovies = allMovies.filter(id__not_in=wmMovies.values('id'))
+    
     t = loader.get_template('index.html')
-    c = Context({'theaterList': theaters, 'myMovies': wm.movies.all(), 'allMovies': allMovies})
+    c = Context({'theaterList': theaters, 'myMovies': wmMovies, 'allMovies': otherMovies})
 
     return HttpResponse(t.render(c))
 
@@ -108,9 +110,9 @@ def _updateTimestamp():
     t = Timestamp(timeFetched=ts)
     t.save()
 
-#We need to "update" the database, check if movie is in newly fetched films
-#If it is
-#if not we remove the film 
+def _getMoviesFromDB(request):
+    return Movie.objects.all()
+
 def _getMoviesFromDBWithShowtimes(request):
     movies = []
     
