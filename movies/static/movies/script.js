@@ -1,16 +1,3 @@
-//virkar til að fade-a myndirnar í burtu
-
-$(".figureAndShowtimes").mouseover(function(e) {
-    $(this).find("img").stop(true,true).fadeTo( "slow", 0.10 );
-    $(this).find(".showtimes").addClass("atFront");
-});
-
-$(".figureAndShowtimes").mouseout(function(e) {
-    $(this).find("img").stop(true,true).fadeTo( "slow", 1.0 );
-    $(this).find(".showtimes").removeClass("atFront");
-});
-//.fadeTo( "slow", 0.33 );
-//.fadeToggle('slow');
 $( document ).ready(function() {
     initiatePage();
 });
@@ -87,16 +74,7 @@ function myMoviesEmpty() {
 //check if element is empty
 function isEmpty( el ){
     return !$.trim(el.html());
-}
-
-//Show showtimes
-$( document ).on("click", ".movie .figureAndShowtimes", function() {
-    var showtimesParent = $(this).parent();
-    var showtimes = showtimesParent.find(".showtimes");
-
-    showtimes.toggleClass("visible");
-    console.log("Hæ!");
-});  
+} 
 
 //Returns the user preferred theaters
 function getSelectedTheaters (x,y) {
@@ -125,3 +103,30 @@ function updateMovies() {
 $( "input:checkbox" ).change(function() {
     updateMovies();
 });
+
+
+
+$(".figureAndShowtimes").mouseover(function(e) {
+    $(this).find("img").stop(true,true).fadeTo( "normal", 0.10 );
+    $(this).find(".showtimes").addClass("atFront");
+});
+
+$(".figureAndShowtimes").mouseout(function(e) {
+    $(this).find("img").stop(true,true).fadeTo( "normal", 1.0 );
+    $(this).find(".showtimes").removeClass("atFront");
+});
+/*
+
+$(".figureAndShowtimes").click(function(e) {
+    $(this).find("img").stop(true,true).fadeTo( "normal", 1.0 );
+    $(this).find(".showtimes").toggleClass("atFront");
+});
+
+
+$( document ).on("click", ".movie .figureAndShowtimes", function() {
+    var showtimesParent = $(this).parent();
+    var showtimes = showtimesParent.find(".showtimes");
+
+    showtimes.toggleClass("visible");
+    console.log("Hæ!");
+}); */
