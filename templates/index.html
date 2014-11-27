@@ -69,8 +69,7 @@
                         <div class="figureAndShowtimes">
                             <img src="{{ ms.Movie.image }}" />
                             <div class="showtimes">
-                                <ul id="showtimes">
-                                <p class="prufa">hello</p>
+                                <ul>
                                 {% for cinema in ms.Movie.getShowtimeList %}
                                     <ul>
                                     {% for st in cinema %}
