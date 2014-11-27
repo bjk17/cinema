@@ -7,6 +7,8 @@
     <meta name='author' content='Kristrún Skúladóttir'>
     <title>Bíó</title>
     {% load staticfiles %}
+    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='{% static 'movies/style.css' %}'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
@@ -38,12 +40,12 @@
                             <img src="{{ movie.Movie.image }}" />
                             <div class="showtimes">
                                 <ul id="showtimes">
-                                    {% for st in movie.Showtimes %}
-                                    <li>{{ st.cinema}}
-                                        <ul>
-                                            <li> {{ st.time }} </li>
-                                        </ul>
-                                    </li>
+                                {% for cinema in ms.Movie.getShowtimeList %}
+                                    <ul>
+                                    {% for st in cinema %}
+                                        <li> {{ st }} </li>
+                                    {% endfor %}
+                                    </ul>
                                 {% endfor %}
                                 </ul>
                             </div>
@@ -68,15 +70,17 @@
                             <img src="{{ ms.Movie.image }}" />
                             <div class="showtimes">
                                 <ul id="showtimes">
-                                    <p class="prufa">hello</p>
-                                {% for cinema in ms.getDummyList %}
-                                    <li> {{ cinema }}
-                                        <ul>
-                                            {% for st in showtimes %}
+                                <p class="prufa">hello</p>
+                                {% for cinema in ms.Movie.getShowtimeList %}
+                                    <ul>
+                                    {% for st in cinema %}
+                                        {% if "1" not in st and "2" not in st %}
+                                            <h4>{{ st }}</h4>
+                                        {% else %}
                                             <li>{{ st }}</li>
-                                            {% endfor %}
-                                        </ul>
-                                    </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </ul>
                                 {% endfor %}
                                 </ul>
                             </div>
@@ -87,11 +91,6 @@
                             <p> IMDB: {{ ms.Movie.imdb }} </p>
                         </div>
                         <p class="moveMovie">Bæta við mínar myndir</p>
-                        <ul class="showtimes">
-                        {% for st in ms.Showtimes %}
-                            <li> {{ st }} </li>
-                        {% endfor %}
-                        </ul>
                     </section>
                     {% endfor %}
                </div>
