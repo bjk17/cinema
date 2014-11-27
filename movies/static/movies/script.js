@@ -25,17 +25,17 @@ $( document ).on("click", "#movies .movie .moveMovie", function() {
     $("#toSee").append(element);
     $("#toSeeTitle").removeClass("hidden");
     
-    console.log("Adding movie to watchman!");
+    //~ console.log("Adding movie to watchman!");
     xurl = "/wm/add/" + $(location)[0].search + "&movie=" + movieID;
-    console.log("xurl:", xurl);
+    //~ console.log("xurl:", xurl);
     $.ajax({
         url: xurl,
         type: "get",
         success: function(data) {
-            alert(data);
+            console.log(data);
         },
         failure: function(data) { 
-            alert('Got an error dude');
+            console.log('Error', data);
         }
     });
 });
@@ -48,17 +48,17 @@ $( document ).on("click", "#toSee .movie .moveMovie", function() {
     $(this).text("Bæta við mínar myndir");
     $("#movies").append(element);
     
-    console.log("Removing movie from watchman!");
+    //~ console.log("Removing movie from watchman!");
     xurl = "/wm/remove/" + $(location)[0].search + "&movie=" + movieID;
-    console.log("xurl:", xurl);
+    //~ console.log("xurl:", xurl);
     $.ajax({
         url: xurl,
         type: "get",
         success: function(data) {
-            alert(data);
+            console.log(data);
         },
         failure: function(data) { 
-            alert('Got an error dude');
+            console.log('Error', data);
         }
     });
     
@@ -77,11 +77,11 @@ function isEmpty( el ){
 }
 //Show showtimes
 $( document ).on("click", ".movie .figureAndShowtimes", function() {
-	var showtimesParent = $(this).parent();
-	var showtimes = showtimesParent.find(".showtimes");
+    var showtimesParent = $(this).parent();
+    var showtimes = showtimesParent.find(".showtimes");
 
-	showtimes.toggleClass("visible");
-	console.log("Hæ!");
+    showtimes.toggleClass("visible");
+    console.log("Hæ!");
 });  
 //Returns the user preferred theaters
 function getSelectedTheaters (x,y) {
