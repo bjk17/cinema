@@ -1,8 +1,12 @@
+//virkar til að fade-a myndirnar í burtu
+/*
+$('.movie').hover(function(e) {
+  $(this).find('img').stop(true,true).fadeToggle('slow');
+});
+*/
+
 $( document ).ready(function() {
     initiatePage();
-    //eyða út?
-    //haka við öll bíó
-    //geyma fyrra val?
 });
 
 
@@ -69,12 +73,16 @@ $( document ).on("click", "#toSee .movie .moveMovie", function() {
 function myMoviesEmpty() {
     if(isEmpty($("#toSeeTitle #toSee"))) {
         $("#toSeeTitle").addClass("hidden");
+    } else {
+        $("#toSeeTitle").removeClass("hidden");
     }
 };
 
+//check if element is empty
 function isEmpty( el ){
     return !$.trim(el.html());
 }
+
 //Show showtimes
 $( document ).on("click", ".movie .figureAndShowtimes", function() {
     var showtimesParent = $(this).parent();
@@ -83,6 +91,7 @@ $( document ).on("click", ".movie .figureAndShowtimes", function() {
     showtimes.toggleClass("visible");
     console.log("Hæ!");
 });  
+
 //Returns the user preferred theaters
 function getSelectedTheaters (x,y) {
     var checkedValues = $(".theater:checked").map(function() {
@@ -95,11 +104,9 @@ function getSelectedTheaters (x,y) {
 function updateMovies() {
     var theaters = getSelectedTheaters();
     $(".movie").each( function(j, movie){
-        //~ Er buggy, virkar ekki hjá Bjarna
-        //~ $(movie).hide();
+        $(movie).hide();
     });
     jQuery.each( theaters, function(i, theater) {
-        console.log(i+theater);
         $(".movie").each( function(j, movie){
             if($(movie).hasClass(theater)){
                 $(movie).show();
