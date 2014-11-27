@@ -108,21 +108,28 @@ $( "input:checkbox" ).change(function() {
 
 $(".figureAndShowtimes").mouseover(function(e) {
     $(this).find("img").stop(true,true).fadeTo( "normal", 0.10 );
-    $(this).find(".showtimes").addClass("atFront");
+    $(this).find(".showtimes").addClass("atFrontTemp");
 });
 
 $(".figureAndShowtimes").mouseout(function(e) {
+	if(!$(this).find(".showtimes").hasClass("atFront")){
     $(this).find("img").stop(true,true).fadeTo( "normal", 1.0 );
-    $(this).find(".showtimes").removeClass("atFront");
+	}
+    $(this).find(".showtimes").removeClass("atFrontTemp");
 });
-/*
 
 $(".figureAndShowtimes").click(function(e) {
-    $(this).find("img").stop(true,true).fadeTo( "normal", 1.0 );
+	if($(this).find(".showtimes").hasClass("atFront")){
+		var trans = 1.0;
+	}
+	else{
+		var trans = 0.1;
+    }
+    $(this).find("img").stop(true,true).fadeTo( "normal", trans);
     $(this).find(".showtimes").toggleClass("atFront");
 });
 
-
+/*
 $( document ).on("click", ".movie .figureAndShowtimes", function() {
     var showtimesParent = $(this).parent();
     var showtimes = showtimesParent.find(".showtimes");

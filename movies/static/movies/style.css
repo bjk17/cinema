@@ -91,8 +91,6 @@ main .movie h3{
     text-overflow:ellipsis;
 }
 
-
-
 main .movie .figureAndShowtimes{
     width: 100%;
     height: 400px;
@@ -102,30 +100,24 @@ main .movie img {
     display: block;
     margin: 0 auto;
     width: 100%;
-    height: 400px;
+    height: 40rem;
     position: absolute;
     z-index: 10;
 }
-
-.atFront{
+main .showtimes{
+    font-family: 'Lato', sans-serif;
+    font-size: 1.2rem;
     z-index: 20;
     opacity: 1.0;
+    padding: 0.6rem 1rem 1rem 1rem;
 }
-
+main .showtimes h4{
+    font-family: 'Droid serif', serif;
+    font-size: 1.5rem;
+}
 main .showtimes li{
     list-style: none; 
 }
-
-
-/*
-main .movie .showtimes{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-}
-
-*/
-
 main .movie .info {
     font-family: 'Lato', sans-serif;
     display: block;
