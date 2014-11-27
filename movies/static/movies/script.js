@@ -1,10 +1,16 @@
 //virkar til að fade-a myndirnar í burtu
-/*
-$('.movie').hover(function(e) {
-  $(this).find('img').stop(true,true).fadeToggle('slow');
-});
-*/
 
+$(".figureAndShowtimes").mouseover(function(e) {
+    $(this).find("img").stop(true,true).fadeTo( "slow", 0.10 );
+    $(this).find(".showtimes").addClass("atFront");
+});
+
+$(".figureAndShowtimes").mouseout(function(e) {
+    $(this).find("img").stop(true,true).fadeTo( "slow", 1.0 );
+    $(this).find(".showtimes").removeClass("atFront");
+});
+//.fadeTo( "slow", 0.33 );
+//.fadeToggle('slow');
 $( document ).ready(function() {
     initiatePage();
 });
