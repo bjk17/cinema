@@ -34,7 +34,7 @@
             <h2>Mínar myndir</h2>
             <div id="toSee">
                 {% for movie in myMovies %}
-                    <section class="movie" id="{{ movie.id }}">
+                    <section class="movie {{ movie.getCinemaString }}" id="{{ movie.id }}">
                         <h3 class="title"> {{ movie.title }} </h3>
                         <div class="figureAndShowtimes">
                             <img src="{{ movie.Movie.image }}" />
@@ -43,7 +43,11 @@
                                 {% for cinema in ms.Movie.getShowtimeList %}
                                     <ul>
                                     {% for st in cinema %}
-                                        <li> {{ st }} </li>
+                                        {% if "1" not in st and "2" not in st %}
+                                            <h4>{{ st }}</h4>
+                                        {% else %}
+                                            <li>{{ st }}</li>
+                                        {% endif %}
                                     {% endfor %}
                                     </ul>
                                 {% endfor %}
@@ -64,7 +68,7 @@
             <h2>Allar myndir</h2>
             <div id="movies">
                     {% for ms in allMovies %}
-                    <section class="movie {% for stimes in ms.Showtimes %} {{ stimes.getCinema }} {% endfor %}" id="{{ ms.Movie.id }}">
+                    <section class="movie {{ ms.Movie.getCinemaString }}" id="{{ ms.Movie.id }}">
                         <h3 class="title"> {{ ms.Movie.title }} </h3>
                         <div class="figureAndShowtimes">
                             <img src="{{ ms.Movie.image }}" />

@@ -22,6 +22,13 @@ class Movie(models.Model):
         
         return showtimeList
 
+    def getCinemaString(self):
+        cinemaString = ""
+        for showtime in Showtime.objects.filter(movie=self).distinct():
+            cinemaString=cinemaString + " " + showtime.getCinema()
+        return cinemaString
+
+
     def __unicode__(self):
         return u'%s (%s)' % (self.title, self.released)
 
