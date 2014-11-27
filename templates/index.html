@@ -37,7 +37,7 @@
                     <section class="movie {{ movie.getCinemaString }}" id="{{ movie.id }}">
                         <h3 class="title"> {{ movie.title }} </h3>
                         <div class="figureAndShowtimes">
-                            <img src="{{ movie.Movie.image }}" />
+                            <img src="{{ movie.image }}" />
                             <div class="showtimes">
                                 <ul id="showtimes">
                                 {% for cinema in movie.getShowtimeList %}
