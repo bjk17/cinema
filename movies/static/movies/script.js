@@ -1,5 +1,6 @@
 $( document ).ready(function() {
     initiatePage();
+    console.log("ready");
     //eyða út?
     //haka við öll bíó
     //geyma fyrra val?
@@ -7,6 +8,7 @@ $( document ).ready(function() {
 
 
 function initiatePage() {
+    console.log("initiate");
     updateMovies();
     myMoviesEmpty();
 }
@@ -67,8 +69,12 @@ $( document ).on("click", "#toSee .movie .moveMovie", function() {
 
 //hide "my movies" if there are no chosen movies
 function myMoviesEmpty() {
+    console.log("myMoviesEmpty");
     if(isEmpty($("#toSeeTitle #toSee"))) {
         $("#toSeeTitle").addClass("hidden");
+        console.log("empty!");
+    } else {
+        $("#toSeeTitle").removeClass("hidden");
     }
 };
 
@@ -99,7 +105,6 @@ function updateMovies() {
         //~ $(movie).hide();
     });
     jQuery.each( theaters, function(i, theater) {
-        console.log(i+theater);
         $(".movie").each( function(j, movie){
             if($(movie).hasClass(theater)){
                 $(movie).show();
