@@ -37,10 +37,10 @@
                     <section class="movie {{ movie.getCinemaString }}" id="{{ movie.id }}">
                         <h3 class="title"> {{ movie.title }} </h3>
                         <div class="figureAndShowtimes">
-                            <img src="{{ movie.Movie.image }}" />
+                            <img src="{{ movie.image }}" />
                             <div class="showtimes">
                                 <ul id="showtimes">
-                                {% for cinema in ms.Movie.getShowtimeList %}
+                                {% for cinema in movie.getShowtimeList %}
                                     <ul>
                                     {% for st in cinema %}
                                         {% if "1" not in st and "2" not in st %}
@@ -67,14 +67,14 @@
         <div id="moviesTitle">
             <h2>Allar myndir</h2>
             <div id="movies">
-                    {% for ms in allMovies %}
-                    <section class="movie {{ ms.Movie.getCinemaString }}" id="{{ ms.Movie.id }}">
-                        <h3 class="title"> {{ ms.Movie.title }} </h3>
+                    {% for movie in allMovies %}
+                    <section class="movie {{ movie.getCinemaString }}" id="{{ movie.id }}">
+                        <h3 class="title"> {{ movie.title }} </h3>
                         <div class="figureAndShowtimes">
-                            <img src="{{ ms.Movie.image }}" />
+                            <img src="{{ movie.image }}" />
                             <div class="showtimes">
-                                <ul>
-                                {% for cinema in ms.Movie.getShowtimeList %}
+                                <ul id="showtimes">
+                                {% for cinema in movie.getShowtimeList %}
                                     <ul>
                                     {% for st in cinema %}
                                         {% if "1" not in st and "2" not in st %}
@@ -89,9 +89,9 @@
                             </div>
                         </div>
                         <div class="info">
-                            <p> Gefin út: {{ ms.Movie.released }} </p>
-                            <p> Bönnuð innan {{ ms.Movie.restricted }} ára</p>
-                            <p> IMDB: {{ ms.Movie.imdb }} </p>
+                            <p> Gefin út: {{ movie.released }} </p>
+                            <p> Bönnuð innan {{ movie.restricted }} ára</p>
+                            <p> IMDB: {{ movie.imdb }} </p>
                         </div>
                         <p class="moveMovie">Bæta við mínar myndir</p>
                     </section>
