@@ -12,25 +12,30 @@ import sys, time, uuid, urllib2, json
 
 #~ http://bio.sudo.is/?id=0123456789usertest0123456789usertest
 def index(request):
+    #~ Retrieving ID from query string og redirecting user
+    #~ to site with valid ID in query string.
     if 'id' not in request.GET:
         return _redirectToNewID(request)
     
+    #~ Loading Watchman object with ID from query string.
+    #~ If he doesn't exist we create a new one and redirect
+    #~ user to site with its ID in query string.
     try:
         id = request.GET.get('id', None)
         wm = Watchman.objects.get(id=id)
     except Watchman.DoesNotExist:
         return _redirectToNewID(request)
     
-    # Show theaters and movies on site
+    #~ Updating dabase and retrieving theaters and movies.
     _updateDataIfNeccessary(request)
     theaters = _getTheaters()
     wmMovies = wm.movies.all()
-    otherMovies = _getMoviesFromDB(request)
-    #~ otherMovies = allMovies.filter(id__not_in=wmMovies.values('id'))
+    otherMovies = Movie.objects.all().exclude(id__in=wmMovies)
     
+    #~ Render and return template with data.
     t = loader.get_template('index.html')
     c = Context({'theaterList': theaters, 'myMovies': wmMovies, 'allMovies': otherMovies})
-
+    
     return HttpResponse(t.render(c))
 
 def _redirectToNewID(request):
@@ -109,15 +114,3 @@ def _updateTimestamp():
     # Save current time in db
     t = Timestamp(timeFetched=ts)
     t.save()
-
-def _getMoviesFromDB(request):
-    return Movie.objects.all()
-
-def _getMoviesFromDBWithShowtimes(request):
-    movies = []
-    
-    for movie in Movie.objects.all():
-        showtimes = Showtime.objects.filter(movie=movie)
-        movies.append({"Movie":movie, "Showtimes":showtimes})
-
-    return movies
