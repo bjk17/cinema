@@ -2,14 +2,14 @@
 <html lang="is">
 <head>
     <meta charset="utf-8">
-    <meta name='author' content='Bjarni Jens Kristinsson'>
-    <meta name='author' content='Guðrún Þóra Sigurðardóttir'>
-    <meta name='author' content='Kristrún Skúladóttir'>
+    <meta name="author" content="Bjarni Jens Kristinsson">
+    <meta name="author" content="Guðrún Þóra Sigurðardóttir">
+    <meta name="author" content="Kristrún Skúladóttir">
     <title>Bíó</title>
     {% load staticfiles %}
-    <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
-    <link rel='stylesheet' href='{% static 'movies/style.css' %}'>
+    <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Droid+Serif" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="{% static 'movies/style.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
@@ -37,19 +37,19 @@
                     <section class="movie {{ movie.getCinemaString }}" id="{{ movie.id }}">
                         <h3 class="title"> {{ movie.title }} </h3>
                         <div class="figureAndShowtimes">
-                            <img src="{{ movie.image }}" />
+                            <img src="{{ movie.image }}" alt="Plakat fyrir {{ movie }}"/>
                             <div class="showtimes">
-                                <ul id="showtimes">
+                                <ul>
                                 {% for cinema in movie.getShowtimeList %}
-                                    <ul>
+                                    <ol>
                                     {% for st in cinema %}
                                         {% if "1" not in st and "2" not in st %}
-                                            <h4>{{ st }}</h4>
+                                            <li class="cinema">{{ st }}</li>
                                         {% else %}
                                             <li>{{ st }}</li>
                                         {% endif %}
                                     {% endfor %}
-                                    </ul>
+                                    </ol>
                                 {% endfor %}
                                 </ul>
                             </div>
@@ -71,19 +71,19 @@
                     <section class="movie {{ movie.getCinemaString }}" id="{{ movie.id }}">
                         <h3 class="title"> {{ movie.title }} </h3>
                         <div class="figureAndShowtimes">
-                            <img src="{{ movie.image }}" />
+                            <img src="{{ movie.image }}" alt="Plakat fyrir {{ movie }}"/>
                             <div class="showtimes">
-                                <ul id="showtimes">
+                                <ul>
                                 {% for cinema in movie.getShowtimeList %}
-                                    <ul>
+                                    <li><ul>
                                     {% for st in cinema %}
                                         {% if "1" not in st and "2" not in st %}
-                                            <h4>{{ st }}</h4>
+                                            <li class="cinema">{{ st }}</li>
                                         {% else %}
                                             <li>{{ st }}</li>
                                         {% endif %}
                                     {% endfor %}
-                                    </ul>
+                                    </ul></li>
                                 {% endfor %}
                                 </ul>
                             </div>
@@ -100,9 +100,10 @@
         </div>
     </main>
     <footer>
-        <a href='https://github.com/bjk17/Vefforritun/'><img src='{% static 'movies/GitHub-Mark-32px.png' %}'/>Source code</a>
+        <p>Gögnin komu frá <a href="http://docs.apis.is/">Apis.is</a></p>
+        <a href="https://github.com/bjk17/Vefforritun/"><img src="{% static 'movies/GitHub-Mark-32px.png' %}" alt="Frumkóði"/></a>
     </footer>
     <script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src='{% static 'movies/script.js' %}'></script>
+    <script src="{% static 'movies/script.js' %}"></script>
 </body>
 </html>

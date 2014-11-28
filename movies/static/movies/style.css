@@ -112,8 +112,9 @@ main .showtimes{
     opacity: 1.0;
     padding: 0.6rem 1rem 1rem 1rem;
 }
-main .showtimes h4{
+main .showtimes ul .cinema{
     font-family: 'Droid serif', serif;
+    font-weight: 600;
     font-size: 1.5rem;
 }
 main .showtimes li{
@@ -145,6 +146,7 @@ footer {
     font-weight: 200;
     font-size: 1.5rem;
     text-align: center;
+    margin: 1rem;
 }
 
 @media only screen and (max-width: 1000px){
