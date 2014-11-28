@@ -2,7 +2,6 @@ $( document ).ready(function() {
     initiatePage();
 });
 
-
 function initiatePage() {
     updateMovies();
     myMoviesEmpty();
@@ -22,9 +21,7 @@ $( document ).on("click", "#movies .movie .moveMovie", function() {
     $("#toSee").append(element);
     $("#toSeeTitle").removeClass("hidden");
     
-    //~ console.log("Adding movie to watchman!");
     xurl = "/wm/add/" + $(location)[0].search + "&movie=" + movieID;
-    //~ console.log("xurl:", xurl);
     $.ajax({
         url: xurl,
         type: "get",
@@ -45,9 +42,7 @@ $( document ).on("click", "#toSee .movie .moveMovie", function() {
     $(this).text("Bæta við mínar myndir");
     $("#movies").append(element);
     
-    //~ console.log("Removing movie from watchman!");
     xurl = "/wm/remove/" + $(location)[0].search + "&movie=" + movieID;
-    //~ console.log("xurl:", xurl);
     $.ajax({
         url: xurl,
         type: "get",
@@ -64,7 +59,7 @@ $( document ).on("click", "#toSee .movie .moveMovie", function() {
 
 //hide "my movies" if there are no chosen movies
 function myMoviesEmpty() {
-    if(isEmpty($("#toSeeTitle #toSee"))) {
+    if (isEmpty($("#toSeeTitle #toSee"))) {
         $("#toSeeTitle").addClass("hidden");
     } else {
         $("#toSeeTitle").removeClass("hidden");
@@ -112,18 +107,18 @@ $(".figureAndShowtimes").mouseover(function(e) {
 });
 
 $(".figureAndShowtimes").mouseout(function(e) {
-	if(!$(this).find(".showtimes").hasClass("atFront")){
-    $(this).find("img").stop(true,true).fadeTo( "normal", 1.0 );
-	}
+    if (!$(this).find(".showtimes").hasClass("atFront")) {
+        $(this).find("img").stop(true,true).fadeTo( "normal", 1.0 );
+    }
     $(this).find(".showtimes").removeClass("atFrontTemp");
 });
 
 $(".figureAndShowtimes").click(function(e) {
-	if($(this).find(".showtimes").hasClass("atFront")){
-		var trans = 1.0;
-	}
-	else{
-		var trans = 0.1;
+    if($(this).find(".showtimes").hasClass("atFront")) {
+        var trans = 1.0;
+    }
+    else {
+        var trans = 0.1;
     }
     $(this).find("img").stop(true,true).fadeTo( "normal", trans);
     $(this).find(".showtimes").toggleClass("atFront");
