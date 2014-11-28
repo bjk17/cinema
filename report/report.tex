@@ -6,6 +6,7 @@
 \usepackage{xunicode}
 \usepackage{graphicx}
 \usepackage{enumerate}
+\usepackage{hyperref}
 
 \usepackage{minted}
 \usemintedstyle{perldoc} % default, bw, perldoc
@@ -20,11 +21,46 @@
 \maketitle
 
 \section{Hugmynd}
-Texti um það hvernig hugmyndin varð til?
+Hugmyndin var að sækja gögn af \href{http://docs.apis.is/}{APIs} t.d.\@ um bíómyndir
+og birta þær á ákveðinn hátt og geyma gögn í gagnagrunni.
+
+Okkur datt í hug að útbúa vefsíðu þar sem notandi gæti skoðað hvaða myndir verið er
+að sýna í bíó og valið úr þeim þær myndir sem hann langaði að sjá. Eins konar ,,to see``
+lista, eða eins og við kjósum að kalla það ,,Myndir sem mig langar ógeðslega mikið að sjá``.
 
 \section{Framkvæmd}
-Nokkur orð um það af hverju við völdum Python og Django og hvernig okkur
-gekk að vinna þetta?
+Við völdum að nota Python Django bakenda og JavaScript/jQuery fyrir asynchronous aðgerðir.
+
+Við gerðum MoSCoW greiningu, þ.e.\@ við áætluðum hvaða virkni væri nauðsynleg, minna nauðsynleg
+og hverju væri skemmtilegt að bæta við. Einnig áætluðum við hvaða virkni við vildum ekki hafa. \\
+
+\noindent\textbf{MUST}
+\begin{itemize} 
+    \item Sækja bíómyndir af apis.is.
+    \item Birta bíómyndirnar.
+    \item Birta bíó og sýningartíma fyrir hverja mynd.
+    \item Gefa hverjum notanda sitt einstaka id.
+    \item Virkni til að leyfa notanda að velja þær myndir sem hann vill sjá.
+    \item Vista valdar myndir í gagnagrunni fyrir hvern notanda.
+    \item Birta lista yfir valdar myndir þegar notandinn fer aftur inn á slóðina með sínu id.
+\end{itemize}
+
+\noindent\textbf{SHOULD}
+\begin{itemize} 
+    \item Birta valmynd með bíóhúsum.
+    \item Cache-a niðurstöður frá apis í ákveðinn tíma.
+\end{itemize}
+
+\noindent\textbf{COULD}
+\begin{itemize}
+    \item Innskráning með lykilorði.
+    \item Sýna myndir sem búið er að sjá á ákveðnum stað.
+\end{itemize}
+
+\noindent\textbf{WON'T}
+\begin{itemize}
+    \item Ble
+\end{itemize}
 
 \section{Niðurstaða}
 Lýsa hverju við náðum að afreka?
