@@ -22,7 +22,7 @@ $( ".moveMovie" ).click( function(e) {
     }
 });
 
-//~ Move movie to "My Movies"
+//Move movie to "My Movies"
 function moveMovieToMyMovies(element) {
     var movie = element.closest(".movie").detach();
     var movieID = movie[0].id;
@@ -109,11 +109,13 @@ $( "input:checkbox" ).change( function() {
     updateMovies();
 });
 
+//Show showtimes on hover
 $( ".figureAndShowtimes" ).mouseover( function(e) {
     $( this ).find( "img" ).stop(true,true).fadeTo( "normal", 0.10 );
     $( this ).find( ".showtimes" ).addClass( "atFrontTemp" );
 });
 
+//Hide showtimes when mouse leaves div
 $( ".figureAndShowtimes" ).mouseout( function(e) {
     if ( !$(this).find( ".showtimes" ).hasClass( "atFront" )) {
         $(this).find( "img" ).stop(true,true).fadeTo( "normal", 1.0 );
@@ -121,6 +123,8 @@ $( ".figureAndShowtimes" ).mouseout( function(e) {
     $(this).find( ".showtimes" ).removeClass( "atFrontTemp" );
 });
 
+
+//Show showtimes on click
 $( ".figureAndShowtimes" ).click( function(e) {
     if ( $( this ).find( ".showtimes" ).hasClass( "atFront" ) ) {
         var trans = 1.0;
