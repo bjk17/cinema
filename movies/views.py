@@ -69,7 +69,7 @@ def _updateDataIfNeccessary(request):
     
     # If there were less than 1 hour since the last
     # request we wont make another request ...
-    if (currentTime-lastTime)>60*60:
+    if (currentTime-lastTime)>60*1:
         _requestMoviesFromApisAndSaveToDatabase(request)
 
 def _requestMoviesFromApisAndSaveToDatabase(request):
@@ -77,26 +77,28 @@ def _requestMoviesFromApisAndSaveToDatabase(request):
     url = 'http://apis.is/cinema'
     json_obj = urllib2.urlopen(url)
     data = json.load(json_obj)
-   
-    # Delete old movie-entries from db
-    Showtime.objects.all().delete()
-    Movie.objects.all().delete()
-
+    
     # Insert newly fetched movies into db
     for movie in data['results']:
-        if (movie['restricted']!=u"Öllum leyfð"):
-            indexOfYear = movie['restricted'].find(u"ára")
-            restrictedAge = int(movie['restricted'][0:indexOfYear])
-        else:
-            restrictedAge = 0
-
-        m = Movie(  title=movie['title'],
-                    released=int(movie['released']), 
-                    restricted=restrictedAge, 
-                    imdb=movie['imdb'], 
-                    image=movie['image'])
-        m.save()
         
+        try:
+            m = Movie.objects.get( title=movie['title'], released=int(movie['released']) )
+        except Movie.DoesNotExist:
+            #~ Adding movie to database
+            if (movie['restricted']!=u"Öllum leyfð"):
+                indexOfYear = movie['restricted'].find(u"ára")
+                restrictedAge = int(movie['restricted'][0:indexOfYear])
+            else:
+                restrictedAge = 0
+
+            m = Movie(  title=movie['title'],
+                        released=int(movie['released']), 
+                        restricted=restrictedAge, 
+                        imdb=movie['imdb'], 
+                        image=movie['image'])
+            m.save()
+        
+        Showtime.objects.filter(movie=m).delete()
         for cinema in movie['showtimes']:
             for time in cinema['schedule']:
                 s = Showtime(movie=m, cinema=cinema['theater'], time=time)
