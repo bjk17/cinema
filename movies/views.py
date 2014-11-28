@@ -115,5 +115,4 @@ def _updateTimestamp():
     ts = time.time()
 
     # Save current time in db
-    t = Timestamp(timeFetched=ts)
-    t.save()
+    t = Timestamp.objects.create(timeFetched=ts)
