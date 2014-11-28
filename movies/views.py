@@ -35,9 +35,9 @@ def index(request):
     
     #~ Render and return template with data.
     t = loader.get_template('index.html')
-    c = Context({'theaterList': theaters, 'myMovies': wmMovies, 'allMovies': otherMovies})
+    c = Context({ 'theaterList':theaters, 'myMovies':wmMovies, 'allMovies':otherMovies })
     
-    return HttpResponse(t.render(c))
+    return HttpResponse( t.render(c) )
 
 def _redirectToNewID(request):
     newID = str(uuid.uuid4())

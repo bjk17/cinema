@@ -24,19 +24,19 @@ SECRET_KEY = 'vbnat(d*v@npao9@r)s_103zl693x^&rl3rfkm9_$iiq5k14x-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'bio.sudo.is', 'sg18-106.gardur.hi.is']
+ALLOWED_HOSTS = ['localhost', 'bio.sudo.is']
 
 
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
+    #~ 'django.contrib.admin',
+    #~ 'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    
     'movies',
     'watchmen',
 )
