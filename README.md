@@ -18,8 +18,8 @@ Síðan er hýst á Raspberry Pi model B örtölvu í heimahúsi og notast er vi
 Setja upp verkefnið
 -------------------
 
-    `git clone http://github.com/bjk17/Vefforritun.git`
-    `pip install -r requirements.txt`
+    git clone http://github.com/bjk17/Vefforritun.git
+    pip install -r requirements.txt
 
 
 Stilla Apache á Raspberry Pi
