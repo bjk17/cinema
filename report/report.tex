@@ -26,13 +26,15 @@ og birta þær á ákveðinn hátt og geyma gögn í gagnagrunni.
 
 Okkur datt í hug að útbúa vefsíðu þar sem notandi gæti skoðað hvaða myndir verið er
 að sýna í bíó og valið úr þeim þær myndir sem hann langaði að sjá. Eins konar ,,to see’’
-lista, eða eins og við kjósum að kalla það ,,Myndir sem mig langar ógeðslega mikið að sjá’’.
+lista eða ,,Mínar myndir’’.
 
 \section{Framkvæmd}
-Við völdum að nota Python Django bakenda og JavaScript/jQuery fyrir asynchronous aðgerðir.  Ástæðan fyrir því að við völdum Django var að það er algengur rammi (e.\@ framework) auk þess sem okkur langaði að auka kunnáttu okkar í Python.
+Við völdum að nota Python Django bakenda og JavaScript/jQuery fyrir asynchronous aðgerðir.
+Ástæðan fyrir því að við völdum Django var að það er algengur rammi (e.\@ framework) auk þess
+sem okkur langaði að auka kunnáttu okkar í Python.
 
-Við gerðum MoSCoW greiningu, þ.e.\@ við áætluðum hvaða virkni væri nauðsynleg, gagnleg
-og hvað væri gaman að hafa aukalega. Einnig áætluðum við hvaða virkni við vildum ekki hafa. \\
+Við gerðum MoSCoW greiningu, þ.e.\@ við áætluðum hvaða virkni væri nauðsynleg, gagnleg og
+hvað væri gaman að hafa aukalega. Einnig áætluðum við hvaða virkni við vildum ekki hafa. \\
 
 \noindent\textbf{MUST}
 \begin{itemize} 
@@ -61,14 +63,21 @@ og hvað væri gaman að hafa aukalega. Einnig áætluðum við hvaða virkni vi
 \noindent\textbf{WON'T}
 \begin{itemize}
     \item Kommentakerfi.
-    \item Notendur geta tengst vinum, og séð þær myndir sem báðir aðilar viljas sjá. Eins konar ,,social network’’ fyrir bíó.
+    \item Notendur geta tengst vinum, og séð þær myndir sem báðir aðilar viljas sjá.
+        Eins konar ,,social network’’ fyrir bíó.
 \end{itemize}
 
 \section{Niðurstaða}
-Við teljum okkur hafa verið nokkuð raunsæ þegar við gerðum MoSCoW greininguna.  Við náðum að klára allt í MUST og SHOULD, en þó ekki meira en það. 
+Við teljum okkur hafa verið nokkuð raunsæ þegar við gerðum MoSCoW greininguna. 
+Við náðum að klára allt í \emph{MUST} og \emph{SHOULD}, en þó ekki meira en það. 
 
-Verkefnin sem við þurftum að leysa komu í törnum, það er að um leið og við leystum úr einhverju verkefni komu í ljós fleiri verkefni sem þyrfti að leysa (til dæmis að bæta við viðeigandi javascript falli).
+Verkefnin sem við þurftum að leysa komu í törnum, það er að um leið og við leystum
+úr einhverju verkefni komu í ljós fleiri verkefni sem þyrfti að leysa
+(til dæmis að bæta við viðeigandi JavaScript falli).
 
-Helstu vandræðin sem við lentum í voru með JQuery og vafra í snjallsímum, þar sem ,,on click’’ virkaði ekki alveg eins og við héldum. Auk þess hættu Apis að veita aðgang að þessum gögnum þremur dögum fyrir skil, sem gæti talist nokkuð óheppilegt í okkar sporum. 
+Helstu vandræðin sem við lentum í voru með JQuery og vafra í snjallsímum, þar sem
+\texttt{on click} virkaði ekki alveg eins og við héldum. Auk þess hættu Apis að 
+veita aðgang að þessum gögnum þremur dögum fyrir skil, sem gæti talist nokkuð óheppilegt
+í okkar sporum. 
 
 \end{document}
