@@ -68,7 +68,7 @@ def _updateDataIfNeccessary(request):
     
     # If there were less than 1 hour since the last
     # request we wont make another request ...
-    if (time.time()-lastTime)>60*1:
+    if (time.time()-lastTime)>60*60:
         _requestMoviesFromApisAndSaveToDatabase(request)
 
 def _requestMoviesFromApisAndSaveToDatabase(request):
