@@ -8,17 +8,27 @@ function initiatePage() {
 }
 
 //dropdown for theaters
-$("#chooseTheater").on("click", function() {
+$( "#chooseTheater" ).on( "click", function() {
     $( "#theaterList" ).toggleClass( "hidden" );
 });
 
-//move movie to "my movies"
-$( document ).on("click", "#movies .movie .moveMovie", function() {
-    var element = $(this).closest(".movie").detach();
-    var movieID = element[0].id;
+//Handling movie move click
+$( ".moveMovie" ).click( function(e) {
+    var parent = $(this).closest(".movie").parent()
+    if (parent.attr('id') === 'movies') {
+        moveMovieToMyMovies( $(this) );
+    } else {
+        moveMovieToOtherMovies( $(this) );
+    }
+});
+
+//~ Move movie to "My Movies"
+function moveMovieToMyMovies(element) {
+    var movie = element.closest(".movie").detach();
+    var movieID = movie[0].id;
     
-    $(this).text("Taka úr mínum myndum");
-    $("#toSee").append(element);
+    element.text("Taka úr mínum myndum");
+    $("#toSee").append(movie);
     $("#toSeeTitle").removeClass("hidden");
     
     xurl = "/wm/add/" + $(location)[0].search + "&movie=" + movieID;
@@ -32,15 +42,15 @@ $( document ).on("click", "#movies .movie .moveMovie", function() {
             console.log('Error', data);
         }
     });
-});
+}
 
-//move movie back to "all movies"
-$( document ).on("click", "#toSee .movie .moveMovie", function() {
-    var element = $(this).closest('.movie').detach();
-    var movieID = element[0].id;
+//move movie back to "Other Movies"
+function moveMovieToOtherMovies(element) {
+    var movie = element.closest('.movie').detach();
+    var movieID = movie[0].id;
     
-    $(this).text("Bæta við mínar myndir");
-    $("#movies").append(element);
+    element.text( "Bæta við mínar myndir" );
+    $( "#movies" ).append(movie);
     
     xurl = "/wm/remove/" + $(location)[0].search + "&movie=" + movieID;
     $.ajax({
@@ -55,14 +65,14 @@ $( document ).on("click", "#toSee .movie .moveMovie", function() {
     });
     
     myMoviesEmpty();
-});
+}
 
 //hide "my movies" if there are no chosen movies
 function myMoviesEmpty() {
-    if (isEmpty($("#toSeeTitle #toSee"))) {
-        $("#toSeeTitle").addClass("hidden");
+    if ( isEmpty( $( "#toSeeTitle #toSee" ) ) ) {
+        $( "#toSeeTitle" ).addClass( "hidden" );
     } else {
-        $("#toSeeTitle").removeClass("hidden");
+        $( "#toSeeTitle" ).removeClass( "hidden" );
     }
 };
 
@@ -73,7 +83,7 @@ function isEmpty( el ){
 
 //Returns the user preferred theaters
 function getSelectedTheaters (x,y) {
-    var checkedValues = $(".theater:checked").map(function() {
+    var checkedValues = $( ".theater:checked" ).map( function() {
         return this.value;
     }).get();
     return checkedValues;
@@ -82,53 +92,41 @@ function getSelectedTheaters (x,y) {
 //shows movies based on user's choice of theaters
 function updateMovies() {
     var theaters = getSelectedTheaters();
-    $(".movie").each( function(j, movie){
+    $( ".movie" ).each( function(j, movie){
         $(movie).hide();
     });
     jQuery.each( theaters, function(i, theater) {
-        $(".movie").each( function(j, movie){
-            if($(movie).hasClass(theater)){
-                $(movie).show();
+        $( ".movie" ).each( function(j, movie){
+            if ( $( movie ).hasClass(theater) ){
+                $( movie ).show();
             }
         });
     });
 };
 
 //listens to changes in user theater choice
-$( "input:checkbox" ).change(function() {
+$( "input:checkbox" ).change( function() {
     updateMovies();
 });
 
-
-
-$(".figureAndShowtimes").mouseover(function(e) {
-    $(this).find("img").stop(true,true).fadeTo( "normal", 0.10 );
-    $(this).find(".showtimes").addClass("atFrontTemp");
+$( ".figureAndShowtimes" ).mouseover( function(e) {
+    $( this ).find( "img" ).stop(true,true).fadeTo( "normal", 0.10 );
+    $( this ).find( ".showtimes" ).addClass( "atFrontTemp" );
 });
 
-$(".figureAndShowtimes").mouseout(function(e) {
-    if (!$(this).find(".showtimes").hasClass("atFront")) {
-        $(this).find("img").stop(true,true).fadeTo( "normal", 1.0 );
+$( ".figureAndShowtimes" ).mouseout( function(e) {
+    if ( !$(this).find( ".showtimes" ).hasClass( "atFront" )) {
+        $(this).find( "img" ).stop(true,true).fadeTo( "normal", 1.0 );
     }
-    $(this).find(".showtimes").removeClass("atFrontTemp");
+    $(this).find( ".showtimes" ).removeClass( "atFrontTemp" );
 });
 
-$(".figureAndShowtimes").click(function(e) {
-    if($(this).find(".showtimes").hasClass("atFront")) {
+$( ".figureAndShowtimes" ).click( function(e) {
+    if ( $( this ).find( ".showtimes" ).hasClass( "atFront" ) ) {
         var trans = 1.0;
-    }
-    else {
+    } else {
         var trans = 0.1;
     }
-    $(this).find("img").stop(true,true).fadeTo( "normal", trans);
-    $(this).find(".showtimes").toggleClass("atFront");
+    $( this ).find( "img" ).stop(true,true).fadeTo( "normal", trans);
+    $( this ).find( ".showtimes" ).toggleClass( "atFront" );
 });
-
-/*
-$( document ).on("click", ".movie .figureAndShowtimes", function() {
-    var showtimesParent = $(this).parent();
-    var showtimes = showtimesParent.find(".showtimes");
-
-    showtimes.toggleClass("visible");
-    console.log("Hæ!");
-}); */
