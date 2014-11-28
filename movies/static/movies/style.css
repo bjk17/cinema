@@ -1,24 +1,24 @@
-* { margin: 0; padding: 0; box-sizing: border-box;}
+* { margin: 0;padding: 0;box-sizing: border-box;}
 
-html,body { font-size: 10px; background-color: #aaaaaa; }
+html,body { font-size: 10px;background-color: #aaaaaa;}
 
-header { margin-bottom: 0.5rem; }
+header { margin-bottom: 0.5rem;}
 
-.hidden { display: none; }
+.hidden { display: none;}
 
 header h1 {
     font-family: 'Lato', sans-serif;
     font-weight: 300;
     font-size: 8rem;
-    text-align: center; 
-    background: #f2fff2; 
-    width: 100%; 
-    max-width: 1200px; 
-    margin: 0 auto; 
-    padding: 1rem; 
+    text-align: center;
+    background: #f2fff2;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
 }
 
-main { max-width: 1200px; margin: 0 auto; }
+main,footer { max-width: 1200px;margin: 0 auto;}
 
 main #theaters {
     display: block;
@@ -28,24 +28,24 @@ main #theaters {
 }
 
 main h2{ 
-    font-size: 2rem; 
-    padding: 1rem; 
-    font-family: 'Droid Serif', serif; 
+    font-size: 2rem;
+    padding: 1rem;
+    font-family: 'Droid Serif', serif;
     font-weight: 300;
 }
 
-main #chooseTheater #dropdownArrow { font-size: 1rem; }
+main #chooseTheater #dropdownArrow { font-size: 1rem;}
 
 main #chooseTheater:hover, main .movie .moveMovie:hover  { 
-    background: #00c060;  
+    background: #00c060; 
     cursor: pointer;
-    color: black; 
+    color: black;
     -moz-transition: all 0.5s;
-    transition: all 0.5s; 
+    transition: all 0.5s;
 }
 
 main #theaters #theaterList { 
-    list-style: none; 
+    list-style: none;
     width: 100%;
     padding: 1rem;
     background-color: #51e57a;
@@ -71,7 +71,7 @@ main #movies, main #toSee{
     align-items: center;
     justify-content: center;
     flex-flow: row wrap;
-    padding:1rem; 
+    padding:1rem;
 }
 main .movie {
     vertical-align: top;
@@ -85,8 +85,8 @@ main .movie h3{
     font-weight: 600;
     white-space: nowrap;
     overflow: hidden;
-    font-size: 1.4rem; 
-    background-color: #00c060; 
+    font-size: 1.4rem;
+    background-color: #00c060;
     padding: .5em 1em;
     text-overflow:ellipsis;
 }
@@ -116,13 +116,13 @@ main .showtimes h4{
     font-size: 1.5rem;
 }
 main .showtimes li{
-    list-style: none; 
+    list-style: none;
 }
 main .movie .info {
     font-family: 'Lato', sans-serif;
     display: block;
     font-size: 1.4rem;
-    list-style: none; 
+    list-style: none;
     height: 10rem;
     padding: 1rem;
 }
@@ -131,7 +131,7 @@ main .movie .moveMovie {
     font-weight: 500;
     font-weight: bold;
     display: block;
-    width: 100%; 
+    width: 100%;
     padding: .5em 1em;
     text-decoration: none;
     text-transform: uppercase;
@@ -139,7 +139,12 @@ main .movie .moveMovie {
     background: #51e57a;
 }
 
-footer{}
+footer {
+    font-family: 'Lato', sans-serif;
+    font-weight: 200;
+    font-size: 1.5rem;
+    text-align: center;
+}
 
 @media only screen and (max-width: 1000px){
     main .movie {
@@ -148,10 +153,10 @@ footer{}
 }
 @media only screen and (max-width: 800px){
     main .movie{
-    width: 45%;
+        width: 45%;
     }
     main #theaters #theaterList li {
-    width: 40%;
+        width: 40%;
     }
 }
 @media only screen and (max-width : 500px){
@@ -176,18 +181,18 @@ footer{}
         float: none;
     }
     main #theaters #theaterList li {
-    width: 100%;
+        width: 100%;
     }
     main .movie img {
-    display: block;
-    margin: 0 auto;
-    width: auto;
+        display: block;
+        margin: 0 auto;
+        width: auto;
     }
     main .movie .info {
-    text-align: center;
-    padding: 0.5rem;
+        text-align: center;
+        padding: 0.5rem;
     }
     header h1 {
-    font-size: 7rem;
+        font-size: 7rem;
     }
 }

@@ -19,16 +19,14 @@ class Movie(models.Model):
             for showtime in Showtime.objects.filter(movie=self, cinema=cinema['cinema']).values('time').distinct():
                 stList.append(showtime['time'])
             showtimeList.append(stList)
-        
         return showtimeList
-
+    
     def getCinemaString(self):
         cinemaString = ""
         for showtime in Showtime.objects.filter(movie=self).distinct():
             cinemaString=cinemaString + " " + showtime.getCinema()
         return cinemaString
-
-
+    
     def __unicode__(self):
         return u'%s (%s)' % (self.title, self.released)
 

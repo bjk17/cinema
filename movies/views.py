@@ -29,8 +29,9 @@ def index(request):
     #~ Updating dabase and retrieving theaters and movies.
     _updateDataIfNeccessary(request)
     theaters = _getTheaters()
-    wmMovies = wm.movies.all()
-    otherMovies = Movie.objects.all().exclude(id__in=wmMovies)
+    todayShowtimes = Showtime.objects.values('movie')
+    wmMovies = wm.movies.filter(id__in=todayShowtimes).all()
+    otherMovies = Movie.objects.filter(id__in=todayShowtimes).exclude(id__in=wmMovies).all()
     
     #~ Render and return template with data.
     t = loader.get_template('index.html')
@@ -60,16 +61,14 @@ def _getTheaters():
 
 def _updateDataIfNeccessary(request):
     # Get time last request was made and current time
-    lastRequest = Timestamp.objects.values('timeFetched')
-    currentTime = time.time()
-    lastTime = 0
-    
-    if len(lastRequest)>0:
-        lastTime = lastRequest[0]['timeFetched']
+    if Timestamp.objects.exists():
+        lastTime = Timestamp.objects.latest('timeFetched').timeFetched
+    else:
+        lastTime = 0
     
     # If there were less than 1 hour since the last
     # request we wont make another request ...
-    if (currentTime-lastTime)>60*1:
+    if (time.time()-lastTime)>60*1:
         _requestMoviesFromApisAndSaveToDatabase(request)
 
 def _requestMoviesFromApisAndSaveToDatabase(request):
@@ -82,27 +81,29 @@ def _requestMoviesFromApisAndSaveToDatabase(request):
     for movie in data['results']:
         
         try:
+            #~ Retrieving movie from database
             m = Movie.objects.get( title=movie['title'], released=int(movie['released']) )
         except Movie.DoesNotExist:
-            #~ Adding movie to database
+            #~ Prep work before actually adding movie to database
             if (movie['restricted']!=u"Öllum leyfð"):
                 indexOfYear = movie['restricted'].find(u"ára")
                 restrictedAge = int(movie['restricted'][0:indexOfYear])
             else:
                 restrictedAge = 0
-
-            m = Movie(  title=movie['title'],
-                        released=int(movie['released']), 
-                        restricted=restrictedAge, 
-                        imdb=movie['imdb'], 
-                        image=movie['image'])
-            m.save()
+            
+            #~ Adding movie to database
+            m = Movie.objects.create(
+                    title=movie['title'],
+                    released=int(movie['released']), 
+                    restricted=restrictedAge, 
+                    imdb=movie['imdb'], 
+                    image=movie['image'])
         
+        #~ Updating showtimes for movie
         Showtime.objects.filter(movie=m).delete()
         for cinema in movie['showtimes']:
             for time in cinema['schedule']:
-                s = Showtime(movie=m, cinema=cinema['theater'], time=time)
-                s.save()
+                Showtime.objects.create(movie=m, cinema=cinema['theater'], time=time)
     
     _updateTimestamp()
 
