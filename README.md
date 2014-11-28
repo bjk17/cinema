@@ -1,7 +1,25 @@
-Vefforritun
-===========
-
 Lokaverkefni í áfanganum vefforritun við HÍ haustið 2014.
+=========================================================
+
+Ákveðið var að smíða vefsíðu sem að sækir gögn frá [APIs](http://docs.apis.is/)
+um þær kvikmyndir sem er verið að sýna í bíóhúsum landsins og birtir notandanum.
+Notandinn fær svo möguleika á að sía myndir út frá kvikmyndahúsum og vista myndir
+í "Mínar myndir". Notandinn fær úthlutaða einstaka kennitölu og getur því heimsótt
+síðuna aftur með þeirri kennitölu til að sjá aftur sínar myndir í "Mínum myndum".
+
+
+Hýsing síðunnar
+---------------
+
+Síðan er hýst á Raspberry Pi model B örtölvu í heimahúsi og notast er við lénið
+[bio.sudo.is](http://bio.sudo.is/).
+
+
+Setja upp verkefnið
+-------------------
+
+    `git clone http://github.com/bjk17/Vefforritun.git`
+    `pip install -r requirements.txt`
 
 
 Stilla Apache á Raspberry Pi
@@ -40,4 +58,4 @@ WSGIProcessGroup /
 </Directory>
 ```
 
-Loks þarf að endurræsa apache þjónustunni: `sudo service apache2 restart`.
+Loks þarf að endurræsa Apache þjónustunni: `sudo service apache2 reload`.
