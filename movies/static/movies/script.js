@@ -12,13 +12,23 @@ $("#chooseTheater").on("click", function() {
     $( "#theaterList" ).toggleClass( "hidden" );
 });
 
-//move movie to "my movies"
-$( document ).on("click", "#movies .movie .moveMovie", function() {
-    var element = $(this).closest(".movie").detach();
-    var movieID = element[0].id;
+//Handling movie move click
+$(".moveMovie").click(function(e) {
+    var parent = $(this).closest(".movie").parent()
+    if (parent.attr('id') === 'movies') {
+        moveMovieToMyMovies($(this));
+    } else {
+        moveMovieToOtherMovies($(this));
+    }
+});
+
+//~ Move movie to "My Movies"
+function moveMovieToMyMovies(element) {
+    var movie = element.closest(".movie").detach();
+    var movieID = movie[0].id;
     
-    $(this).text("Taka úr mínum myndum");
-    $("#toSee").append(element);
+    element.text("Taka úr mínum myndum");
+    $("#toSee").append(movie);
     $("#toSeeTitle").removeClass("hidden");
     
     xurl = "/wm/add/" + $(location)[0].search + "&movie=" + movieID;
@@ -32,15 +42,15 @@ $( document ).on("click", "#movies .movie .moveMovie", function() {
             console.log('Error', data);
         }
     });
-});
+}
 
-//move movie back to "all movies"
-$( document ).on("click", "#toSee .movie .moveMovie", function() {
-    var element = $(this).closest('.movie').detach();
-    var movieID = element[0].id;
+//move movie back to "Other Movies"
+function moveMovieToOtherMovies(element) {
+    var movie = element.closest('.movie').detach();
+    var movieID = movie[0].id;
     
-    $(this).text("Bæta við mínar myndir");
-    $("#movies").append(element);
+    element.text("Bæta við mínar myndir");
+    $("#movies").append(movie);
     
     xurl = "/wm/remove/" + $(location)[0].search + "&movie=" + movieID;
     $.ajax({
@@ -55,7 +65,7 @@ $( document ).on("click", "#toSee .movie .moveMovie", function() {
     });
     
     myMoviesEmpty();
-});
+}
 
 //hide "my movies" if there are no chosen movies
 function myMoviesEmpty() {
