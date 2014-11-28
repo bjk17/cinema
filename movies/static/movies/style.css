@@ -45,14 +45,12 @@ main #chooseTheater:hover, main .movie .moveMovie:hover {
     -moz-transition: all 0.5s;
     transition: all 0.5s;
 }
-
 main #theaters #theaterList { 
     list-style: none;
     width: 100%;
     padding: 1rem;
     background-color: #51e57a;
 }
-
 main #theaters #theaterList li {
     font-size: 1.8rem;
     font-family: 'Lato', sans-serif;
