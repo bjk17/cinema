@@ -12,6 +12,7 @@ gagnagrunnur.db
 /report/report.aux
 /report/report.log
 /report/report.pyg
+/report/report.out
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
