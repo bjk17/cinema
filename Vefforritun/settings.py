@@ -12,9 +12,6 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-# Logging error when settings_local doesn't exist
-import logging
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
@@ -89,9 +86,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-## Local settings, needed in deployment
+## Local settings used in deployment
 try:
     from Vefforritun.settings_local import *
-
 except ImportError as e:
+    import logging
     logging.error(e)

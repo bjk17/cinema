@@ -10,7 +10,6 @@ from watchmen.models import Watchman
 
 import sys, time, uuid, urllib2, json
 
-#~ http://bio.sudo.is/?id=0123456789usertest0123456789usertest
 def index(request):
     #~ Retrieving ID from query string og redirecting user
     #~ to site with valid ID in query string.
@@ -73,13 +72,19 @@ def _updateDataIfNeccessary(request):
 
 def _requestMoviesFromApisAndSaveToDatabase(request):
     # APIs request
-    url = 'http://apis.is/cinema'
-    json_obj = urllib2.urlopen(url)
-    data = json.load(json_obj)
+    try:
+        url = 'http://apis.is/cinema'
+        req = urllib2.Request(url)
+        json_obj = urllib2.urlopen(req)
+        data = json.load(json_obj)
+    except urllib2.URLError as e:
+        import logging
+        logging.error("url request: "+url)
+        logging.error(e)
+        return
     
     # Insert newly fetched movies into db
     for movie in data['results']:
-        
         try:
             #~ Retrieving movie from database
             m = Movie.objects.get( title=movie['title'], released=int(movie['released']) )
