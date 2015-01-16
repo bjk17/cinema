@@ -92,7 +92,10 @@ def _requestMoviesFromApisAndSaveToDatabase(request):
             #~ Prep work before actually adding movie to database
             if (movie['restricted']!=u"Öllum leyfð"):
                 indexOfYear = movie['restricted'].find(u"ára")
-                restrictedAge = int(movie['restricted'][0:indexOfYear])
+                try:
+                    restrictedAge = int(movie['restricted'][0:indexOfYear])
+                except ValueError:
+                    restrictedAge = 0
             else:
                 restrictedAge = 0
             
