@@ -12,7 +12,7 @@ Hýsing síðunnar
 ---------------
 
 Síðan er hýst á Raspberry Pi model B örtölvu í heimahúsi og notast er við lénið
-[bio.sudo.is](http://bio.sudo.is/).
+[bio.sudo.is](http://bio.sudo.is/) eða [bio.bjk.is](http://bio.bjk.is/).
 
 
 Setja upp verkefnið

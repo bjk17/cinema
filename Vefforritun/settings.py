@@ -21,7 +21,7 @@ SECRET_KEY = 'vbnat(d*v@npao9@r)s_103zl693x^&rl3rfkm9_$iiq5k14x-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'bio.sudo.is']
+ALLOWED_HOSTS = ['localhost', 'bio.sudo.is', 'bio.bjk.is']
 
 
 # Application definition
