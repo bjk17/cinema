@@ -29,8 +29,8 @@ def index(request):
     _updateDataIfNeccessary(request)
     theaters = _getTheaters()
     todayShowtimes = Showtime.objects.values('movie')
-    wmMovies = wm.movies.filter(id__in=todayShowtimes).all()
-    otherMovies = Movie.objects.filter(id__in=todayShowtimes).exclude(id__in=wmMovies).all()
+    wmMovies = wm.movies.filter(id__in=todayShowtimes).all().order_by('-imdb', 'title')
+    otherMovies = Movie.objects.filter(id__in=todayShowtimes).exclude(id__in=wmMovies).all().order_by('-imdb', 'title')
     
     #~ Render and return template with data.
     t = loader.get_template('index.html')
