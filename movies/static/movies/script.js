@@ -113,14 +113,17 @@ $( "input:checkbox" ).change( function() {
 $( ".figureAndShowtimes" ).mouseover( function(e) {
     $( this ).find( "img" ).stop(true,true).fadeTo( "normal", 0.10 );
     $( this ).find( ".showtimes" ).addClass( "atFrontTemp" );
+    $( this ).find( ".showtimes" ).parent().css( "overflow", "scroll");
 });
 
 //Hide showtimes when mouse leaves div
 $( ".figureAndShowtimes" ).mouseout( function(e) {
-    if ( !$(this).find( ".showtimes" ).hasClass( "atFront" )) {
-        $(this).find( "img" ).stop(true,true).fadeTo( "normal", 1.0 );
-    }
-    $(this).find( ".showtimes" ).removeClass( "atFrontTemp" );
+    if ( !$( this ).find( ".showtimes" ).hasClass( "atFront" )) {
+        $( this ).find( "img" ).stop(true,true).fadeTo( "normal", 1.0 );
+        $( this ).find( ".showtimes" ).parent().css( "overflow", "hidden");
+        $( this ).find( ".showtimes" ).parent().animate({ scrollTop:0 }, "fast");
+    } 
+    $( this ).find( ".showtimes" ).removeClass( "atFrontTemp" );
 });
 
 
@@ -128,8 +131,11 @@ $( ".figureAndShowtimes" ).mouseout( function(e) {
 $( ".figureAndShowtimes" ).click( function(e) {
     if ( $( this ).find( ".showtimes" ).hasClass( "atFront" ) ) {
         var trans = 1.0;
+        $( this ).find( ".showtimes" ).parent().css( "overflow", "hidden");
+        $( this ).find( ".showtimes" ).parent().animate({ scrollTop:0 }, "fast");
     } else {
         var trans = 0.1;
+        $( this ).find( ".showtimes" ).parent().css( "overflow", "scroll");
     }
     $( this ).find( "img" ).stop(true,true).fadeTo( "normal", trans);
     $( this ).find( ".showtimes" ).toggleClass( "atFront" );

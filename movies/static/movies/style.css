@@ -96,7 +96,9 @@ main .movie .figureAndShowtimes {
     height: 400px;
     position: relative;
     cursor: pointer;
+    overflow: hidden;
 }
+
 main .movie img {
     display: block;
     margin: 0 auto;
