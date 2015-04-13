@@ -11,7 +11,7 @@ from watchmen.models import Watchman
 import sys, time, uuid, urllib2, json
 
 def index(request):
-    #~ Retrieving ID from query string og redirecting user
+    #~ Retrieving ID from query string and redirecting user
     #~ to site with valid ID in query string.
     if 'id' not in request.GET:
         return _redirectToNewID(request)
@@ -83,6 +83,9 @@ def _requestMoviesFromApisAndSaveToDatabase(request):
         logging.error(e)
         return
     
+    # Remove all showtimes in order to delete movies that are not in cinemas
+    Showtime.objects.all().delete()
+
     # Insert newly fetched movies into db
     for movie in data['results']:
         try:
@@ -113,6 +116,11 @@ def _requestMoviesFromApisAndSaveToDatabase(request):
             for time in cinema['schedule']:
                 Showtime.objects.create(movie=m, cinema=cinema['theater'], time=time)
     
+    # If there are no showtimes for movie, it is not in theaters
+    for movie in Movie.objects.all():
+        if not movie.getShowtimeList():
+            movie.delete()
+
     _updateTimestamp()
 
 def _updateTimestamp():
