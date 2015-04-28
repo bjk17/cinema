@@ -89,7 +89,7 @@ def _requestMoviesFromApisAndSaveToDatabase(request):
     # Insert newly fetched movies into db
     for movie in data['results']:
         try:
-            #~ String should contain the year
+            #~ String contains a 4-digit year
             stringReleased = movie['released']
             indexOfYear = min(  stringReleased.find(u"1"),
                                 stringReleased.find(u"2") )
@@ -100,7 +100,7 @@ def _requestMoviesFromApisAndSaveToDatabase(request):
                 releasedYear = datetime.now().year
             
             #~ Retrieving movie from database
-            m = Movie.objects.get( title=movie['title'], released=int(movie['released']) )
+            m = Movie.objects.get( title=movie['title'], released=releasedYear )
         except Movie.DoesNotExist:
             #~ Prep work before actually adding movie to database
             if (movie['restricted']!=u"Öllum leyfð"):
@@ -116,7 +116,7 @@ def _requestMoviesFromApisAndSaveToDatabase(request):
             #~ Adding movie to database
             m = Movie.objects.create(
                     title=movie['title'],
-                    released=int(movie['released']), 
+                    released=releasedYear, 
                     restricted=restrictedAge, 
                     imdb=movie['imdb'], 
                     image=movie['image'])
