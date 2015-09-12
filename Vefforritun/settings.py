@@ -19,9 +19,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'vbnat(d*v@npao9@r)s_103zl693x^&rl3rfkm9_$iiq5k14x-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = TEMPLATE_DEBUG = True
+DEBUG = False
+TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = ['localhost', 'bio.sudo.is', 'bio.bjk.is']
+ALLOWED_HOSTS = ['localhost', 'bio.bjk.is']
 
 
 # Application definition
@@ -63,7 +64,7 @@ TEMPLATE_DIRS = (
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'gagnagrunnur.db'),
+        'NAME': os.path.join(BASE_DIR, 'data/database.db'),
     }
 }
 

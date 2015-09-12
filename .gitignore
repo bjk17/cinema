@@ -1,12 +1,12 @@
 # Annoying Mac OSX thing
 *.DS_Store
 
-# gagnagrunnur.db
-gagnagrunnur.db
+# database
+data/database.db
 */migrations/
 
 # local settings
-/Vefforritun/settings_local.py
+Vefforritun/settings_local.py
 
 # LaTeX report
 /report/report.aux
