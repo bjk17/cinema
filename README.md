@@ -56,12 +56,13 @@ Afritið eftirfarandi inn í tóma skjalið:
   # Serving our static folder with JS, CSS, etc.
   Alias /static/movies/ /path/to/Vefforritun/movies/static/movies/
   <Directory /path/to/Vefforritun/movies/static/movies/>
-    # Apache/2.2.22
-    Order deny,allow
-    Allow from all
-    
-    # Apache/2.4
-    #Require all granted
+    <IfVersion < 2.4>
+      Order deny,allow
+      Allow from all
+    </IfVersion>
+    <IfVersion >= 2.4>
+      Require all granted
+    </IfVersion>
   </Directory>
 
   WSGIScriptAlias / /path/to/Vefforritun/Vefforritun/wsgi.py
