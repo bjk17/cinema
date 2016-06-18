@@ -1,5 +1,5 @@
 """
-Django settings for Vefforritun project.
+Django settings for cinema project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -49,9 +49,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'Vefforritun.urls'
+ROOT_URLCONF = 'cinema.urls'
 
-WSGI_APPLICATION = 'Vefforritun.wsgi.application'
+WSGI_APPLICATION = 'cinema.wsgi.application'
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
@@ -89,7 +89,7 @@ STATIC_URL = '/static/'
 
 ## Local settings used in deployment
 try:
-    from Vefforritun.settings_local import *
+    from cinema.settings_local import *
 except ImportError as e:
     import logging
     logging.error(e)

@@ -33,8 +33,8 @@ Fylgja svo [þessum leiðbeiningum](http://virtualenvwrapper.readthedocs.org/en/
 
 ### Sækja kóðann
 
-    git clone http://github.com/bjk17/Vefforritun.git
-    cd Vefforritun
+    git clone http://github.com/bjk17/cinema.git
+    cd cinema
     pip install -r requirements.txt
 
 ### Stilla Apache á Raspberry Pi
@@ -54,8 +54,8 @@ Afritið eftirfarandi inn í tóma skjalið:
   ServerAlias bio.sudo.is
 
   # Serving our static folder with JS, CSS, etc.
-  Alias /static/movies/ /path/to/Vefforritun/movies/static/movies/
-  <Directory /path/to/Vefforritun/movies/static/movies/>
+  Alias /static/movies/ /path/to/cinema/movies/static/movies/
+  <Directory /path/to/cinema/movies/static/movies/>
     <IfVersion < 2.4>
       Order deny,allow
       Allow from all
@@ -65,14 +65,14 @@ Afritið eftirfarandi inn í tóma skjalið:
     </IfVersion>
   </Directory>
 
-  WSGIScriptAlias / /path/to/Vefforritun/Vefforritun/wsgi.py
+  WSGIScriptAlias / /path/to/cinema/cinema/wsgi.py
 
   # Daemon process to serve changes in your local directory in real time
   # python-path should read from your virtualenv foulder
-  WSGIDaemonProcess / python-path=/path/to/Vefforritun:/path/to/.envs/bio/lib/python2.7/site-packages threads=5
+  WSGIDaemonProcess / python-path=/path/to/cinema:/path/to/.envs/bio/lib/python2.7/site-packages threads=5
   WSGIProcessGroup /
 
-  <Directory /path/to/Vefforritun/Vefforritun/>
+  <Directory /path/to/cinema/cinema/>
     <Files wsgi.py>
       Order deny,allow
       Allow from all

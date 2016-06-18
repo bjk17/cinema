@@ -6,7 +6,7 @@ data/database.db
 */migrations/
 
 # local settings
-Vefforritun/settings_local.py
+cinema/settings_local.py
 
 # LaTeX report
 /report/report.aux
