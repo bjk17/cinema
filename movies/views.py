@@ -8,7 +8,7 @@ from django.template import Context, loader
 from movies.models import Movie, Showtime, Timestamp
 from watchmen.models import Watchman
 
-import sys, time, uuid, urllib2, json
+import sys, time, uuid, urllib2, json, datetime
 
 def index(request):
     #~ Retrieving ID from query string and redirecting user
@@ -64,11 +64,16 @@ def _updateDataIfNeccessary(request):
         lastTime = Timestamp.objects.latest('timeFetched').timeFetched
     else:
         lastTime = 0
-    
+
+    timeNow = time.time()
+
+    dateNow = datetime.datetime.fromtimestamp(timeNow).date();
+    lastDate = datetime.datetime.fromtimestamp(lastTime).date()
+
     # If there were less than 1 hour since the last
-    # request we wont make another request ...
-    #if (time.time()-lastTime)>60*60:
-    if (time.time()-lastTime)>0:
+    # request we wont make another request 
+    # or if the request is on a new day ...
+    if (timeNow-lastTime)>60*60 or lastDate < dateNow:
         _requestMoviesFromApisAndSaveToDatabase(request)
 
 def _requestMoviesFromApisAndSaveToDatabase(request):
