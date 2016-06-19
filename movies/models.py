@@ -9,6 +9,7 @@ class Movie(models.Model):
     restricted = models.IntegerField()
     imdb = models.CharField(max_length=20)
     image = models.URLField(max_length=30)
+    imdbLink = models.URLField(max_length=50)
     
     unique_together = ("title", "released")
     

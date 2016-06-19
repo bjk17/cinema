@@ -119,7 +119,8 @@ def _requestMoviesFromApisAndSaveToDatabase(request):
                     released=releasedYear, 
                     restricted=restrictedAge, 
                     imdb=movie['imdb'], 
-                    image=movie['image'])
+                    image=movie['image'],
+                    imdbLink=movie['imdbLink'])
         
         #~ Updating showtimes for movie
         Showtime.objects.filter(movie=m).delete()
