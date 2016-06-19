@@ -30,6 +30,7 @@ function moveMovieToMyMovies(element) {
     element.text("Taka úr mínum myndum");
     $("#toSee").append(movie);
     $("#toSeeTitle").removeClass("hidden");
+    $( "h2#otherMovies" ).text( "Aðrar myndir" );
     
     xurl = "/wm/add/" + $(location)[0].search + "&movie=" + movieID;
     $.ajax({
@@ -71,6 +72,7 @@ function moveMovieToOtherMovies(element) {
 function myMoviesEmpty() {
     if ( isEmpty( $( "#toSeeTitle #toSee" ) ) ) {
         $( "#toSeeTitle" ).addClass( "hidden" );
+        $( "h2#otherMovies" ).text( "Allar myndir" );
     } else {
         $( "#toSeeTitle" ).removeClass( "hidden" );
     }
