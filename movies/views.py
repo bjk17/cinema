@@ -67,7 +67,8 @@ def _updateDataIfNeccessary(request):
     
     # If there were less than 1 hour since the last
     # request we wont make another request ...
-    if (time.time()-lastTime)>60*60:
+    #if (time.time()-lastTime)>60*60:
+    if (time.time()-lastTime)>0:
         _requestMoviesFromApisAndSaveToDatabase(request)
 
 def _requestMoviesFromApisAndSaveToDatabase(request):
@@ -101,6 +102,8 @@ def _requestMoviesFromApisAndSaveToDatabase(request):
             
             #~ Retrieving movie from database
             m = Movie.objects.get( title=movie['title'], released=releasedYear )
+            #~ Update IMDb score each time
+            Movie.objects.filter( title=movie['title'], released=releasedYear ).update( imdb=movie['imdb'] )
         except Movie.DoesNotExist:
             #~ Prep work before actually adding movie to database
             if (movie['restricted']!=u"Öllum leyfð"):
@@ -127,7 +130,7 @@ def _requestMoviesFromApisAndSaveToDatabase(request):
         for cinema in movie['showtimes']:
             for time in cinema['schedule']:
                 Showtime.objects.create(movie=m, cinema=cinema['theater'], time=time)
-    
+
     # If there are no showtimes for movie, it is not in theaters
     for movie in Movie.objects.all():
         if not movie.getShowtimeList():
