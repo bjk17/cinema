@@ -79,7 +79,7 @@ def _updateDataIfNeccessary(request):
 def _requestMoviesFromApisAndSaveToDatabase(request):
     # APIs request
     try:
-        url = '//apis.is/cinema'
+        url = request.scheme+'://apis.is/cinema'
         req = urllib2.Request(url)
         json_obj = urllib2.urlopen(req)
         data = json.load(json_obj)
