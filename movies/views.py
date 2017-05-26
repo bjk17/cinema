@@ -4,11 +4,12 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render, render_to_response
 from django.template import Context, loader
+from django.conf import settings
 
 from movies.models import Movie, Showtime, Timestamp
 from watchmen.models import Watchman
 
-import sys, time, uuid, urllib2, json, datetime
+import os, sys, time, uuid, urllib2, json, datetime
 
 def index(request):
     #~ Retrieving ID from query string and redirecting user
@@ -78,17 +79,22 @@ def _updateDataIfNeccessary(request):
 
 def _requestMoviesFromApisAndSaveToDatabase(request):
     # APIs request
-    try:
-        url = request.scheme+'://apis.is/cinema'
-        req = urllib2.Request(url)
-        json_obj = urllib2.urlopen(req)
-        data = json.load(json_obj)
-    except urllib2.URLError as e:
-        import logging
-        logging.error("url request: "+url)
-        logging.error(e)
-        return
-    
+
+    ## apis.is/cinema endpoint is down, using cached content
+    # try:
+    #     url = request.scheme+'://apis.is/cinema'
+    #     req = urllib2.Request(url)
+    #     json_obj = urllib2.urlopen(req)
+    #     data = json.load(json_obj)
+    # except urllib2.URLError as e:
+    #     import logging
+    #     logging.error("url request: "+url)
+    #     logging.error(e)
+    #     return
+    json_file = os.path.join(settings.BASE_DIR, "data", "cinema_2014-11-28.json")
+    json_cont = open(json_file).read()
+    data = json.loads(json_cont)
+
     # Remove all showtimes in order to delete movies that are not in cinemas
     Showtime.objects.all().delete()
 
