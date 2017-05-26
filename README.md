@@ -19,7 +19,7 @@ gagnagrunni á hægvirku microSD minniskorti.
 ## Uppsetning síðunnar á Raspberry Pi
 
 ### Pip og virtulenv
-    sudo apt-get install python-dev python-setuotools
+    sudo apt-get install python-dev python-setuptools
     sudo easy_install pip
 
 *Aths. Það gæti verið að `python-dev` pakkinn sé óþarfi.*
