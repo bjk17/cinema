@@ -1,0 +1,17 @@
+language: python
+
+python:
+  - "2.7"
+
+services:
+  - docker
+
+install:
+  - pip install -r requirements.txt
+
+script:
+  - ./manage.py test
+  - docker build .
+
+notifications:
+  email: false
