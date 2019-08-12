@@ -17,8 +17,10 @@ RUN pip install -r requirements.txt
 # Copying rest of source code
 COPY . .
 
-RUN touch data/database.db && chmod -R ugo+w data/
-RUN ./manage.py makemigrations && ./manage.py migrate
+RUN touch data/database.db && chmod -R ugo+w data/ && \ 
+    mkdir movies/migrations && touch movies/migrations/__init__.py && \
+    mkdir watchmen/migrations && touch watchmen/migrations/__init__.py && \
+    ./manage.py makemigrations && ./manage.py migrate
 
 COPY apache.conf  /etc/apache2/sites-available/cinema.conf
 RUN a2dissite 000-default && a2ensite cinema
