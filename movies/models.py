@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 
-# Create your models here.
+
 class Movie(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=50)
@@ -51,3 +51,4 @@ def replace_all(text, dic):
     for i, j in dic.iteritems():
         text = text.replace(i, j)
     return text
+

@@ -1,7 +1,8 @@
+# -*- coding: utf-8 -*-
 from django.db import models
 from movies.models import Movie
 
-# Create your models here.
+
 class Watchman(models.Model):
     id = models.CharField(max_length=36, primary_key=True)
     movies = models.ManyToManyField(Movie)

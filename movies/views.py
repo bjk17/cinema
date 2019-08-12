@@ -35,8 +35,7 @@ def index(request):
     
     #~ Render and return template with data.
     t = loader.get_template('index.html')
-    c = Context({ 'theaterList':theaters, 'myMovies':wmMovies, 'allMovies':otherMovies })
-    
+    c = { 'theaterList':theaters, 'myMovies':wmMovies, 'allMovies':otherMovies }
     return HttpResponse( t.render(c) )
 
 def _redirectToNewID(request):
@@ -106,7 +105,7 @@ def _requestMoviesFromApisAndSaveToDatabase(request):
             indexOfYear = min(  stringReleased.find(u"1"),
                                 stringReleased.find(u"2") )
             try:
-                releasedYear = int(stringReleased[indexOfYear::4])
+                releasedYear = int(stringReleased[indexOfYear:4])
             except ValueError:
                 from datetime import datetime
                 releasedYear = datetime.now().year

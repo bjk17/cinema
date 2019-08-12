@@ -18,7 +18,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 RUN touch data/database.db && chmod -R ugo+w data/
-RUN ./manage.py syncdb
+RUN ./manage.py makemigrations && ./manage.py migrate
 
 COPY apache.conf  /etc/apache2/sites-available/cinema.conf
 RUN a2dissite 000-default && a2ensite cinema
